@@ -109,9 +109,9 @@
                                                                     <div class="">
                                                                 
                                                                         @if(!empty($setting->website_logo_dark))
-                                                                            <img src="{{ $setting->website_logo_dark }}" alt="..." id="website_logo_dark_output" class="img-thumbnail mb-3"  onerror="this.src='{{ asset('assets/admin/img/logo.png') }}';">
+                                                                            <img src="{{ $setting->website_logo_dark }}" alt="..." id="website_logo_dark_output" class="img-thumbnail mb-3"  onerror="this.src='{{ asset('assets/admin/img/logo-def.png') }}';">
                                                                         @else
-                                                                            <img src="" alt="..." id="website_logo_dark_output" class="img-thumbnail mb-3" onerror="this.src='{{ asset('assets/admin/img/logo.png') }}';">
+                                                                            <img src="" alt="..." id="website_logo_dark_output" class="img-thumbnail mb-3" onerror="this.src='{{ asset('assets/admin/img/logo-def.png') }}';">
                                                                         @endif
                 
                                                                         <input type="text" hidden id="website_logo_dark" class="form-control" name="website_logo_dark">
@@ -136,9 +136,9 @@
                                                                     <div class="">
                                                                 
                                                                         @if(!empty($setting->website_logo_light))
-                                                                            <img src="{{ $setting->website_logo_light }}" alt="..." id="website_logo_light_output" class="img-thumbnail rounded mb-3"  onerror="this.src='{{ asset('assets/admin/img/logo-white.png') }}';" style="background-color: #ccc;">
+                                                                            <img src="{{ $setting->website_logo_light }}" alt="..." id="website_logo_light_output" class="img-thumbnail rounded mb-3"  onerror="this.src='{{ asset('assets/admin/img/logo-def.png') }}';" style="background-color: #ccc;">
                                                                         @else
-                                                                            <img src="" alt="..." id="website_logo_light_output" class="img-thumbnail rounded mb-3" onerror="this.src='{{ asset('assets/admin/img/logo-white.png') }}';" style="background-color: #ccc;">
+                                                                            <img src="" alt="..." id="website_logo_light_output" class="img-thumbnail rounded mb-3" onerror="this.src='{{ asset('assets/admin/img/logo-def.png') }}';" style="background-color: #ccc;">
                                                                         @endif
                 
                                                                         <input type="text" hidden id="website_logo_light" class="form-control" name="website_logo_light">
@@ -163,9 +163,9 @@
                                                                     <div class="">
                                                                 
                                                                         @if(!empty($setting->website_logo_small))
-                                                                            <img src="{{ $setting->website_logo_small }}" alt="..." id="website_logo_output" class="img-thumbnail rounded mb-3"  onerror="this.src='{{ asset('assets/admin/img/logo.png') }}';" style="height: 60px;">
+                                                                            <img src="{{ $setting->website_logo_small }}" alt="..." id="website_logo_output" class="img-thumbnail rounded mb-3"  onerror="this.src='{{ asset('assets/admin/img/logo-sm-default.png') }}';" style="height: 60px;">
                                                                         @else
-                                                                            <img src="" alt="..." id="website_logo_small_output" class="img-thumbnail rounded mb-3" onerror="this.src='{{ asset('assets/admin/img/logo-small.png') }}';" style="height: 60px;">
+                                                                            <img src="" alt="..." id="website_logo_small_output" class="img-thumbnail rounded mb-3" onerror="this.src='{{ asset('assets/admin/img/logo-sm-default.png') }}';" style="height: 60px;">
                                                                         @endif
                 
                                                                         <input type="text" hidden id="website_logo_small" class="form-control" name="website_logo_small">
@@ -190,9 +190,9 @@
                                                                     <div class="">
                                                                 
                                                                         @if(!empty($setting->website_favicon))
-                                                                            <img src="{{ $setting->website_favicon }}" alt="..." id="website_favicon_output" class="img-thumbnail mb-3"  onerror="this.src='{{ asset('assets/admin/img/favicon.png') }}';">
+                                                                            <img src="{{ $setting->website_favicon }}" alt="..." id="website_favicon_output" class="img-thumbnail mb-3"  onerror="this.src='{{ asset('assets/admin/img/logo-sm-default.png') }}';">
                                                                         @else
-                                                                            <img src="" alt="..." id="website_favicon_output" class="img-thumbnail mb-3" onerror="this.src='{{ asset('assets/admin/img/favicon.png') }}';">
+                                                                            <img src="" alt="..." id="website_favicon_output" class="img-thumbnail mb-3" onerror="this.src='{{ asset('assets/admin/img/logo-sm-default.png') }}';">
                                                                         @endif
                 
                                                                         <input type="text" hidden id="website_favicon" class="form-control" name="website_favicon">
@@ -376,7 +376,7 @@
 
                                                 <div class="form-group">
                                                     <label for="github">{{__('default.form.github')}}</label>
-                                                    <input type="text" name="github" id="github" class="form-control">
+                                                    <input type="text" name="github" id="github" class="form-control" value="{{$setting->instagram}}">
                 
                                                     @error('github')
                                                         <span class="text-danger">{{ $message }}</span>

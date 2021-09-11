@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             AdminSeeder::class,
             CurrencySeeder::class,
             ServiceCategorySeeder::class,
+            SettingSeeder::class,
         ]);
 
          //factory

@@ -26,8 +26,7 @@
                 <p class="lead">Book a service at very affordable price, </p>
             </div>
             <div class="filter-header">
-                {{-- <form id="sform" action="{{ route('searchService') }}" method="POST">  --}}
-                <form id="sform" action="" method="POST"> 
+                <form id="sform" action="{{ route('searchService') }}" method="POST"> 
                 @csrf                       
                     <input type="text" id="q" name="q" required="required" placeholder="What Services do you want?" class="input-large typeahead" autocomplete="off">
                     <input type="submit" name="submit" value="Search">
@@ -198,15 +197,15 @@
 @push('scripts')
     <script type="text/javascript">
 
-        // var path = "";
+        var path = "{{ route('autocomplete') }}";
 
-        // $('input.typeahead').typeahead({
-        //     source: function(query, process){
-        //         return $.get(path,{query:query},function(data){
-        //             return process(data);
-        //         });
-        //     }
-        // });
+        $('input.typeahead').typeahead({
+            source: function(query, process){
+                return $.get(path,{query:query},function(data){
+                    return process(data);
+                });
+            }
+        });
 
 
     </script>    

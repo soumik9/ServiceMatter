@@ -1,15 +1,22 @@
+@php
+    $setting = \App\Models\Setting::find(1);
+@endphp
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>S ervice M atter - Online Service Provider for your House Needs</title>
+    <title>@if(!@empty($setting->website_title)) {{ $setting->website_title }} @else S ervice M atter - Online Service Provider for your House Needs @endif</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    {{-- {{asset('')}} --}}
-    <link rel="icon" href="{{ asset('images/icons/icon.png') }}" type="image/gif" sizes="16x16">
+    @if(!@empty($setting->website_favicon))
+        <link rel="icon" href="{{ $setting->website_favicon }}" type="image/gif" sizes="16x16">
+    @else
+        <link rel="icon" href="{{ asset('assets/admin/img/icons/icon.png') }}" type="image/gif" sizes="16x16">
+    @endif
+   
     <link href="{{asset('assets/frontend/css/style.css')}}" rel="stylesheet" media="screen">
     <link href="{{asset('assets/frontend/css/chblue.css')}}" rel="stylesheet" media="screen">
     <link href="{{asset('assets/frontend/css/theme-responsive.css')}}" rel="stylesheet" media="screen">
@@ -33,21 +40,43 @@
                     <div class="col-md-6">
 
                         <ul class="visible-md visible-lg text-left">
-                            <li><a href="tel:+911234567890"><i class="fa fa-phone"></i> +91-1234567890</a></li>
-                            <li><a href="mailto:contact@servicematter.in"><i class="fa fa-envelope"></i>contact@servicematter.in</a></li>
+                            <li>
+                                <a href="tel:+911234567890">
+                                    <i class="fa fa-phone"></i>@if(!@empty($setting->phone)) {{ $setting->phone }} @else +91-1234567890 @endif
+                                </a>
+                            </li>
+                            <li>
+                                <a href="mailto:contact@servicematter.in">
+                                    <i class="fa fa-envelope"></i>@if(!@empty($setting->email)) {{ $setting->email }} @else contact@servicematter.in @endif
+                                </a>
+                            </li>
                         </ul>
 
                         <ul class="visible-xs visible-sm">
-                            <li class="text-left"><a href="tel:+911234567890"><i class="fa fa-phone"></i>+91-1234567890</a></li>
-                            <li class="text-right"><a href=""><i class="fa fa-map-marker"></i> Rajshahi, Bangladesh</a></li>
+                            <li class="text-left">
+                                <a href="tel:+911234567890">
+                                    <i class="fa fa-phone"></i>@if(!@empty($setting->phone)) {{ $setting->phone }} @else +91-1234567890 @endif
+                                </a>
+                            </li>
+                            <li class="text-right">
+                                <a href="#">
+                                    <i class="fa fa-map-marker"></i>@if(!@empty($setting->address)) {{ $setting->address }} @else Rajshahi, Bangladesh @endif 
+                                </a>
+                            </li>
                         </ul>
 
                     </div>
                     <div class="col-md-6">
 
                         <ul class="visible-md visible-lg text-right">
-                            <li><i class="fa fa-comment"></i> Live Chat</li>
-                            <li><a href=""><i class="fa fa-map-marker"></i> Rajshahi, Bangladesh</a></li>
+                            <li>
+                                <i class="fa fa-comment"></i> Live Chat
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-map-marker"></i>@if(!@empty($setting->address)) {{ $setting->address }} @else Rajshahi, Bangladesh @endif
+                                </a>
+                            </li>
                         </ul>
 
                     </div>
@@ -65,7 +94,8 @@
                         <a href="/"><span style="font-style: italic;">S</span>  ERVICE <span style="font-style: italic;">M</span> ATTER </a>
                     </li>
                     <li> <a href="{{ route('home.service.categories') }}">Service Categories</a></li>
-
+                    
+                    {{-- 
                     <li> <a href="#">Appliances</a>
                         <ul class="drop-down one-column hover-fade">
                             <li><a href="servicesbycategory/11.html">Computer Repair</a></li>
@@ -117,7 +147,7 @@
                             <li><a href="servicesbycategory/17.html">Movers &amp; Packers </a></li>
                             <li><a href="servicesbycategory/18.html">Home Automation</a></li>
                         </ul>
-                    </li>
+                    </li> --}}
 
                      {{-- @if (Route::has('admin.login')) --}}
                         @auth
@@ -204,21 +234,41 @@
                         <h3>CONTACT US</h3>
                         <ul class="contact_footer">
                             <li class="location">
-                                <i class="fa fa-map-marker"></i> <a href="#"> Faridabad, Haryana, India</a>
+                                <i class="fa fa-map-marker"></i> 
+                                <a href="#">@if(!@empty($setting->address)){{ $setting->address }} @else Rajshahi, Bangladesh @endif</a>
                             </li>
                             <li>
-                                <i class="fa fa-envelope"></i> <a
-                                    href="mailto:contact@surfsidemedia.in">contact@surfsidemedia.in</a>
+                                <i class="fa fa-envelope"></i> 
+                                <a href="mailto:contact@servicematter.in">@if(!@empty($setting->email)) {{ $setting->email }} @else contact@servicematter.in @endif</a>
                             </li>
                             <li>
-                                <i class="fa fa-headphones"></i> <a href="tel:+911234567890">+91-1234567890</a>
+                                <i class="fa fa-headphones"></i> 
+                                <a href="tel:+911234567890">@if(!@empty($setting->phone)) {{ $setting->phone }} @else +91-1234567890 @endif</a>
                             </li>
                         </ul>
                         <h3 style="margin-top: 10px">FOLLOW US</h3>
                         <ul class="social">
-                            <li class="facebook"><span><i class="fa fa-facebook"></i></span><a href="#"></a></li>
-                            <li class="twitter"><span><i class="fa fa-twitter"></i></span><a href="#"></a></li>
-                            <li class="github"><span><i class="fa fa-instagram"></i></span><a href="#"></a></li>
+                            <li class="facebook">
+                                @if(!@empty($setting->facebook))
+                                    <a href="{{ $setting->facebook }}"><span><i class="fa fa-facebook"></i></span></a>
+                                @else
+                                    <a href="#"><span><i class="fa fa-facebook"></i></span></a>
+                                @endif
+                            </li>
+                            <li class="twitter">
+                                @if(!@empty($setting->twitter))
+                                    <a href="{{ $setting->twitter }}"><span><i class="fa fa-twitter"></i></span></a>
+                                @else
+                                    <a href="#"><span><i class="fa fa-twitter"></i></span></a>
+                                @endif
+                            </li>
+                            <li class="github">
+                                @if(!@empty($setting->instagram))
+                                    <a href="{{ $setting->instagram }}" target="_blank"><span><i class="fa fa-instagram"></i></span></a>
+                                @else
+                                    <a href="#"><span><i class="fa fa-instagram"></i></span></a>
+                                @endif
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -227,20 +277,40 @@
                         <h3 class="mlist-h">CONTACT US</h3>
                         <ul class="contact_footer mlist">
                             <li class="location">
-                                <i class="fa fa-map-marker"></i> <a href="#"> Faridabad, Haryana, India</a>
+                                <i class="fa fa-map-marker"></i> 
+                                <a href="#">@if(!@empty($setting->address)){{ $setting->address }} @else Rajshahi, Bangladesh @endif</a>
                             </li>
                             <li>
-                                <i class="fa fa-envelope"></i> <a
-                                    href="mailto:contact@surfsidemedia.in">contact@surfsidemedia.in</a>
+                                <i class="fa fa-envelope"></i> 
+                                <a href="mailto:contact@servicematter.in">@if(!@empty($setting->email)) {{ $setting->email }} @else contact@servicematter.in @endif</a>
                             </li>
                             <li>
-                                <i class="fa fa-phone"></i> <a href="tel:+911234567890">+91-1234567890</a>
+                                <i class="fa fa-phone"></i> 
+                                <a href="tel:+911234567890">@if(!@empty($setting->phone)) {{ $setting->phone }} @else +91-1234567890 @endif</a>
                             </li>
                         </ul>
                         <ul class="social mlist-h">
-                            <li class="facebook"><span><i class="fa fa-facebook"></i></span><a href="#"></a></li>
-                            <li class="twitter"><span><i class="fa fa-twitter"></i></span><a href="#"></a></li>
-                            <li class="github"><span><i class="fa fa-instagram"></i></span><a href="#"></a></li>
+                            <li class="facebook">
+                                @if(!@empty($setting->facebook))
+                                    <a href="{{ $setting->facebook }}"><span><i class="fa fa-facebook"></i></span></a>
+                                @else
+                                    <a href="#"><span><i class="fa fa-facebook"></i></span></a>
+                                @endif
+                            </li>
+                            <li class="twitter">
+                                @if(!@empty($setting->twitter))
+                                    <a href="{{ $setting->twitter }}"><span><i class="fa fa-twitter"></i></span></a>
+                                @else
+                                    <a href="#"><span><i class="fa fa-twitter"></i></span></a>
+                                @endif
+                            </li>
+                            <li class="github">
+                                @if(!@empty($setting->instagram))
+                                    <a href="{{ $setting->instagram }}"><span><i class="fa fa-instagram"></i></span></a>
+                                @else
+                                    <a href="#"><span><i class="fa fa-instagram"></i></span></a>
+                                @endif
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -258,7 +328,7 @@
                             </ul>
                         </div>
                         <div class="col-md-6">
-                            <p class="text-xs-center crtext">&copy; 2021 SurfsideMedia. All Rights Reserved.</p>
+                            <p class="text-xs-center crtext">&copy; 2021 {{ $setting->website_title }}. All Rights Reserved.</p>
                         </div>
                     </div>
                 </div>

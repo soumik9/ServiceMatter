@@ -7,6 +7,7 @@ use App\Models\Service;
 use App\Models\ServiceCategory;
 use App\Models\Slider;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class IndexController extends Controller
 {
@@ -40,8 +41,26 @@ class IndexController extends Controller
     {
         $service   = Service::where('slug', $slug)->first();
         $r_service = Service::where('service_category_id', $service->service_category_id)->where('slug', '!=', $slug)->inRandomOrder()->first();
-        //dd($service);
 
         return view('frontend.service_details', compact('service', 'r_service'));
+    }
+
+    public function autocomplete(Request $request)
+    {
+        $data = Service::select('name')->where("name","LIKE","%{$request->input('query')}%")->get();
+        return response()->json($data);
+    }
+
+    public function searchService(Request $request)
+    {
+        $service_slug = Str::slug($request->q, '-');
+
+        if($service_slug)
+        {
+            return redirect('/service-details/'.$service_slug);
+        }else
+        {
+            return back();
+        }
     }
 }

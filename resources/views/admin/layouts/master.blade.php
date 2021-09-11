@@ -14,7 +14,7 @@
 		@if (!empty($setting->website_favicon))
 			<link rel="shortcut icon" type="image/x-icon" href="{{ $setting->website_favicon }}">
 		@else 
-			<link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/admin/img/favicon.png') }}">
+			<link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/admin/img/icons/icon.png') }}">
 		@endif
 
 		<!-- css -->

@@ -22,6 +22,9 @@ Route::get('/service-categories', 	[App\Http\Controllers\Frontend\IndexControlle
 Route::get('/service-categories/{slug}', 	[App\Http\Controllers\Frontend\IndexController::class, 'servicesByCategory'])->name('home.servicesbycategories');
 Route::get('/service-details/{slug}', 	    [App\Http\Controllers\Frontend\IndexController::class, 'servicesDetails'])->name('home.service.details');
 
+Route::get('/autocomplete',     [App\Http\Controllers\Frontend\IndexController::class, 'autocomplete'])->name('autocomplete');
+Route::post('/search',          [App\Http\Controllers\Frontend\IndexController::class, 'searchService'])->name('searchService');
+
 
 
 Route::prefix('admin')->group(function () {
