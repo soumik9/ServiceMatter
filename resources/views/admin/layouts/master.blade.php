@@ -153,19 +153,23 @@
         </div><!-- /Main Wrapper -->
 		
 		<!-- scripts -->
+		<script src="{{ asset('vendor/file-manager/js/file-manager.js') }}"></script>
+		<script src="{{ asset('assets/admin/js/feather.min.js') }}"></script>
+		<script src="{{ asset('assets/admin/js/tinymce.min.js') }}"></script>
+
         <script src="{{ asset('assets/admin/js/jquery-3.2.1.min.js') }}"></script>
         <script src="{{ asset('assets/admin/js/popper.min.js') }}"></script>
         <script src="{{ asset('assets/admin/js/bootstrap.min.js') }}"></script>
-        <script src="{{ asset('assets/admin/plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
-        <script src="{{ asset('assets/admin/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+
 		<script src="{{ asset('assets/admin/plugins/datatables/datatables.min.js') }}"></script>
-        <script src="{{ asset('vendor/file-manager/js/file-manager.js') }}"></script>
-		<script src="{{ asset('assets/admin/js/feather.min.js') }}"></script>
+		<script src="{{ asset('assets/admin/plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
+		 {{-- <script src="{{ asset('assets/admin/plugins/datatables/jquery.dataTables.min.js') }}"></script> --}}
+
+		<script src="{{ asset('assets/admin/js/select2.min.js') }}"></script>
 		<script src="{{ asset('assets/admin/js/sweetalert.min.js') }}"></script>
 		<script src="{{ asset('assets/admin/js/toastr.min.js') }}"></script>
-		<script src="{{ asset('assets/admin/js/select2.min.js') }}"></script>
 		<script src="{{ asset('assets/admin/js/toggle.min.js') }}"></script>
-		<script src="{{ asset('assets/admin/js/tinymce.min.js') }}"></script>
+	
 		<script src="{{ asset('assets/admin/js/script.js') }}"></script>
 		{!! Toastr::message() !!}
 
@@ -178,6 +182,15 @@
 				$('.select2').select2();
 			});
         </script>
+
+		<script>
+			$(document).ready(function() {        
+				$('#datatable').DataTable({
+					"sDom": '<"top"i>rt<"bottom"flp><"clear">'
+				} );
+				
+			} );
+		</script>
 		
         @stack('scripts')
 		

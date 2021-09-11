@@ -93,13 +93,13 @@
                                             <td>
                                                 @can('user-edit')
                                                     <a href="{{ route('users.edit', $user->id) }}" class="custom-edit-btn mr-1">
-                                                        <i data-feather="edit"></i>{{ __('default.table.edit') }}
+                                                        <i class="far fa-edit"></i>{{ __('default.table.edit') }}
                                                     </a> 
                                                 @endcan
 
                                                 @can('user-delete')
                                                     <a href="{{ route('users.destroy', $user->id) }}" class="custom-delete-btn delete-user">
-                                                        <i data-feather="trash"></i>{{ __('default.table.delete') }}
+                                                        <i class="far fa-trash-alt"></i>{{ __('default.table.delete') }}
                                                     </a>
                                                 @endcan
                                             </td>

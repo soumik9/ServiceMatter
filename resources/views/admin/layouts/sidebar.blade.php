@@ -6,12 +6,21 @@
                     <a href="{{ route('dashboard') }}"><i data-feather="home"></i> <span>{{ __('sidebar.dashboard') }}</span></a>
                 </li>
 
+                {{-- slides --}}
+                @if(auth()->user()->can('slide-list'))
+                    @can('slide-list')
+                    <li class="{{ (request()->is('admin/slides*')) ? 'active' : '' }}"> 
+                        <a href="{{ route('slides.index') }}"><i data-feather="airplay"></i> <span>{{ __('sidebar.slides') }}</span></a>
+                    </li>
+                    @endcan
+                @endif
+
                 
                 {{-- Services --}}
                 @if(auth()->user()->can('service-list') || auth()->user()->can('servicecategory-list'))
                     <li class="submenu">
                         <a class="#" href="javascript:void(0)" aria-expanded="false">
-                            <i data-feather="layout"></i><span class="hide-menu">{{ __('sidebar.services') }}</span><span class="menu-arrow"></span>
+                            <i data-feather="aperture"></i><span class="hide-menu">{{ __('sidebar.services') }}</span><span class="menu-arrow"></span>
                         </a>
                         
                         <ul style="display: none;">

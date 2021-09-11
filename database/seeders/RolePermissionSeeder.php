@@ -63,10 +63,10 @@ class RolePermissionSeeder extends Seeder
             'service-edit',
             'service-delete',
 
-            'slider-list',
-            'slider-create',
-            'slider-edit',
-            'slider-delete',
+            'slide-list',
+            'slide-create',
+            'slide-edit',
+            'slide-delete',
 
             'file-manager',
             'websetting-edit',

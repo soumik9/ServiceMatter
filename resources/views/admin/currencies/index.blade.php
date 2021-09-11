@@ -77,13 +77,13 @@
                                             <td>
                                                 @can('currency-edit')
                                                     <a href="{{ route('currencies.edit', $currency->id) }}" class="custom-edit-btn mr-1">
-                                                        <i data-feather="edit"></i>{{ __('default.table.edit') }}
+                                                        <i class="far fa-edit"></i>{{ __('default.table.edit') }}
                                                     </a> 
                                                 @endcan
 
                                                 @can('currency-delete')
                                                     <a href="{{ route('currencies.destroy', $currency->id) }}" class="custom-delete-btn delete-currency">
-                                                        <i data-feather="trash"></i>{{ __('default.table.delete') }}
+                                                        <i class="far fa-trash-alt"></i>{{ __('default.table.delete') }}
                                                     </a>
                                                 @endcan
                                             </td>

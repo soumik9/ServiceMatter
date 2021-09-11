@@ -11,6 +11,7 @@ return [
         'slug'              => 'Slug',
         'title'             => 'Title',
         'symbol'            => 'Symbol',
+        'price'             => 'Price',
         'featured'          => 'Featured',
         'action'            => 'Action',
         'mobile'            => 'Mobile',
@@ -34,6 +35,7 @@ return [
             'upload_image'      => 'Upload Image',
             'change_image'      => 'Change Image',
             'name'              => 'Name',
+            'price'             => 'Price',
             'email'             => 'Email',
             'symbol'            => 'Symbol',
             'featured'          => 'Featured',
@@ -62,6 +64,9 @@ return [
             'delete'            => 'Delete',
             'delete-message'    => 'Are you sure?',
 
+            'discount'          => 'Discount',
+            'discount_type'     => 'Discount Type',
+
 
             'facebook'    => 'Facebook',
             'twitter'     => 'Twitter',
@@ -77,6 +82,7 @@ return [
             'meta_title'            => 'Meta Title',
             'meta_description'      => 'Meta Description',
             'meta_keywords'         => 'Meta Keywords',
+            'meta_tag'              => 'Meta Tag',
 
 
             'validation'    => [
@@ -107,6 +113,9 @@ return [
                 ],
                 'meta_title' => [
                     'required'  => 'The meta title field is required!',
+                ],
+                'price' => [
+                    'required'  => 'The price field is required!',
                 ],
                 'description' => [
                     'required'  => 'The description field is required!',

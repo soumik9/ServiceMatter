@@ -73,13 +73,13 @@
                                             <td>
                                                 @can('role-edit')
                                                     <a href="{{ route('roles.edit', $role->id) }}" class="custom-edit-btn mr-1">
-                                                        <i data-feather="edit"></i>{{ __('default.table.edit') }}
+                                                        <i class="far fa-edit"></i>{{ __('default.table.edit') }}
                                                     </a> 
                                                 @endcan
 
                                                 @can('role-delete')
                                                     <a href="{{ route('roles.destroy', $role->id) }}" class="custom-delete-btn delete-role">
-                                                        <i data-feather="trash"></i>{{ __('default.table.delete') }}
+                                                        <i class="far fa-trash-alt"></i></i>{{ __('default.table.delete') }}
                                                     </a>
                                                 @endcan
                                             </td>

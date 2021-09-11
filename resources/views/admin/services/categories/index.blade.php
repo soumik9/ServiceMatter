@@ -67,9 +67,9 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>
                                             @if (!empty($servicecategory->image))
-                                                <img class=" avatar avatar-sm mr-2avatar-img rounded-circle" src="{{ $servicecategory->image }}" alt="{{ $servicecategory->name }}">
+                                                <img class="avatar avatar-sm" src="{{ $servicecategory->image }}" alt="{{ $servicecategory->name }}">
                                             @else
-                                                <img class=" avatar avatar-sm mr-2avatar-img rounded-circle" src="{{ asset('assets/admin/img/categories') }}/{{$servicecategory->image}}" alt="{{ $servicecategory->name }}">
+                                                <img class=" avatar avatar-sm" src="{{ asset('assets/admin/img/default-service.gif') }}" alt="{{ $servicecategory->name }}">
                                             @endif
                                         </td>
                             
@@ -91,13 +91,13 @@
                                             <td>
                                                 @can('servicecategory-edit')
                                                     <a href="{{ route('servicecategories.edit', $servicecategory->id) }}" class="custom-edit-btn mr-1">
-                                                        <i data-feather="edit"></i>{{ __('default.table.edit') }}
+                                                        <i class="far fa-edit"></i>{{ __('default.table.edit') }}
                                                     </a> 
                                                 @endcan
 
                                                 @can('servicecategory-delete')
                                                     <a href="{{ route('servicecategories.destroy', $servicecategory->id) }}" class="custom-delete-btn delete-servicecategory">
-                                                        <i data-feather="trash"></i>{{ __('default.table.delete') }}
+                                                        <i class="far fa-trash-alt"></i>{{ __('default.table.delete') }}
                                                     </a>
                                                 @endcan
                                             </td>

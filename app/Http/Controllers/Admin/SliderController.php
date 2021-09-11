@@ -3,88 +3,71 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Slider;
+use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
-class SliderController extends Controller
+class sliderController extends Controller
 {
     function __construct()
 	{
 		$this->middleware('auth');
-		$this->middleware('permission:slider-list', ['only' => ['index','store']]);
-		$this->middleware('permission:slider-create', ['only' => ['create','store']]);
-		$this->middleware('permission:slider-edit', ['only' => ['edit','update']]);
-		$this->middleware('permission:slider-delete', ['only' => ['destroy']]);
+		$this->middleware('permission:slide-list', ['only' => ['index','store']]);
+		$this->middleware('permission:slide-create', ['only' => ['create','store']]);
+		$this->middleware('permission:slide-edit', ['only' => ['edit','update']]);
+		$this->middleware('permission:slide-delete', ['only' => ['destroy']]);
 
-        $slider_list = Permission::get()->filter(function($item) {
-            return $item->name == 'slider-list';
+        $slide_list = Permission::get()->filter(function($item) {
+            return $item->name == 'slide-list';
         })->first();
-        $slider_create = Permission::get()->filter(function($item) {
-            return $item->name == 'slider-create';
+        $slide_create = Permission::get()->filter(function($item) {
+            return $item->name == 'slide-create';
         })->first();
-        $slider_edit = Permission::get()->filter(function($item) {
-            return $item->name == 'slider-edit';
+        $slide_edit = Permission::get()->filter(function($item) {
+            return $item->name == 'slide-edit';
         })->first();
-        $slider_delete = Permission::get()->filter(function($item) {
-            return $item->name == 'slider-delete';
+        $slide_delete = Permission::get()->filter(function($item) {
+            return $item->name == 'slide-delete';
         })->first();
 
 
-        if($slider_list == null) {
-            Permission::create(['name'=>'slider-list']);
+        if($slide_list == null) {
+            Permission::create(['name'=>'slide-list']);
         }
-        if ($slider_create == null) {
-            Permission::create(['name'=>'slider-create']);
+        if ($slide_create == null) {
+            Permission::create(['name'=>'slide-create']);
         }
-        if ($slider_edit == null) {
-            Permission::create(['name'=>'slider-edit']);
+        if ($slide_edit == null) {
+            Permission::create(['name'=>'slide-edit']);
         }
-        if ($slider_delete == null) {
-            Permission::create(['name'=>'slider-delete']);
+        if ($slide_delete == null) {
+            Permission::create(['name'=>'slide-delete']);
         }
 	}
 
     public function index()
     {
-        $sliders = Slider::all();
-        return view('admin.sliders.index', compact('sliders'));
+        $slides = Slider::all();
+        return view('admin.slides.index', compact('slides'));
     }
  
     public function create()
     {
-        $roles = Role::all();
-        return view('admin.sliders.create', compact('roles'));
+        return view('admin.slides.create');
     }
 
     public function store(Request $request)
     {
         $rules = [
-            'name' 			=> 'required',
-			'email' 		=> 'required|email|unique:sliders,email',
-			'password' 		=> 'required|min:6|same:confirm-password',
-			'roles' 		=> 'required',
-			'nid' 		    => 'required|unique:sliders,nid',
-			'mobile' 		=> 'required|string|unique:sliders,mobile',
+            'title' 		=> 'required',
 			'image' 		=> 'nullable',
             'status' 		=> 'required|numeric',
         ];
 
         $messages = [
-            'name.required'    		=> __('default.form.validation.name.required'),
-            'email.required'    	=> __('default.form.validation.email.required'),
-            'email.email'    		=> __('default.form.validation.email.email'),
-            'email.unique'    		=> __('default.form.validation.email.unique'),
-            'password.required'    	=> __('default.form.validation.password.required'),
-            'password.same'    		=> __('default.form.validation.password.same'),
-            'password.min'    		=> __('default.form.validation.password.min'),
-            'roles.required'    	=> __('slider.form.validation.roles.required'),
-            'mobile.required'    	=> __('default.form.validation.mobile.required'),
-            'mobile.unique'    	    => __('default.form.validation.mobile.unique'),
-            'nid.required'    	    => __('default.form.validation.nid.required'),
-            'nid.unique'    	    => __('default.form.validation.nid.unique'),
+            'title.required'        => __('default.form.validation.name.required'),
             'status.required'    	=> __('default.form.validation.status.required'),
         ];
 
@@ -92,106 +75,70 @@ class SliderController extends Controller
         $this->validate($request, $rules, $messages);
 		$input = request()->all();
 
-		$input['password'] = Hash::make($input['password']);
 
 		try {
-			$slider = slider::create($input);
-
-            if($request->roles)
-            {
-                $slider->assignRole($request->input('roles'));
-            }
-
-            Toastr::success(__('slider.message.store.success'));
-		    return redirect()->route('sliders.index');
+			$slide = Slider::create($input);
+            Toastr::success(__('slide.message.store.success'));
+		    return redirect()->route('slides.index');
 		} catch (Exception $e) {
-            Toastr::error(__('slider.message.store.error'));
-		    return redirect()->route('sliders.index');
+            Toastr::error(__('slide.message.store.error'));
+		    return redirect()->route('slides.index');
 		}
     }
 
     public function edit($id)
     {
-        $slider = slider::find($id);
-        $roles = Role::all();
-        return view('admin.sliders.edit', compact('slider','roles'));
+        $slide = Slider::find($id);
+        return view('admin.slides.edit', compact('slide'));
     }
 
     public function update(Request $request, $id)
     {
         $rules = [
-            'name' 			=> 'required',
-			'email' 		=> 'required|email|unique:sliders,email,' . $id,
-			'password' 		=> 'nullable|min:6|same:confirm-password',
-			'roles' 		=> 'required',
-			'nid' 		    => 'required|unique:sliders,nid,' . $id,
-			'mobile' 		=> 'required|string|unique:sliders,mobile,' . $id,
+            'title' 		=> 'required',
 			'image' 		=> 'nullable',
             'status' 		=> 'required|numeric',
         ];
 
         $messages = [
-            'name.required'    		=> __('default.form.validation.name.required'),
-            'email.required'    	=> __('default.form.validation.email.required'),
-            'email.email'    		=> __('default.form.validation.email.email'),
-            'email.unique'    		=> __('default.form.validation.email.unique'),
-            'password.same'    		=> __('default.form.validation.password.same'),
-            'password.min'    		=> __('default.form.validation.password.min'),
-            'roles.required'    	=> __('slider.form.validation.roles.required'),
-            'mobile.required'    	=> __('default.form.validation.mobile.required'),
-            'mobile.unique'    	    => __('default.form.validation.mobile.unique'),
-            'nid.required'    	    => __('default.form.validation.nid.required'),
-            'nid.unique'    	    => __('default.form.validation.nid.unique'),
+            'title.required'        => __('default.form.validation.name.required'),
             'status.required'    	=> __('default.form.validation.status.required'),
         ];
                
         $this->validate($request, $rules, $messages);
 		$input = $request->all();
-		$slider = slider::find($id);
+		$slide = Slider::find($id);
 
 		if (empty($input['image'])) {
-			$input['image'] = $slider->image;
-		}
-
-		if(!empty($input['password'])){
-			$input['password'] = Hash::make($input['password']);
-		}else{
-			$input['password'] = $slider->password;
+			$input['image'] = $slide->image;
 		}
 
 		try {
-			$slider->update($input);
-            $slider->roles()->detach(); //delete all the roles
-
-            if($request->roles)
-            {
-                $slider->assignRole($request->input('roles'));
-            }
-
-            Toastr::success(__('slider.message.update.success'));
-		    return redirect()->route('sliders.index');
+			$slide->update($input);
+            Toastr::success(__('slide.message.update.success'));
+		    return redirect()->route('slides.index');
 		} catch (Exception $e) {
-            Toastr::error(__('slider.message.update.error'));
-		    return redirect()->route('sliders.index');
+            Toastr::error(__('slide.message.update.error'));
+		    return redirect()->route('slides.index');
 		}
     }
 
     public function destroy($id)
     {
         try {
-            $slider = slider::find($id)->delete();
-            return back()->with(Toastr::error(__('slider.message.destroy.success')));
+            $slide = Slider::find($id)->delete();
+            return back()->with(Toastr::error(__('slide.message.destroy.success')));
 		} catch (Exception $e) {
-            $error_msg = Toastr::error(__('slider.message.destroy.error'));
-			return redirect()->route('sliders.index')->with($error_msg);
+            $error_msg = Toastr::error(__('slide.message.destroy.error'));
+			return redirect()->route('slides.index')->with($error_msg);
 		}
     }
 
     public function status_update(Request $request)
     {
-        $slider = slider::findOrFail($request->slider_id);
-        $slider->status = $request->status;
-        $slider->save();
+        $slide = Slider::findOrFail($request->slide_id);
+        $slide->status = $request->status;
+        $slide->save();
 
         if($request->status == 1)
         {

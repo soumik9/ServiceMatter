@@ -73,13 +73,13 @@
                                         <td>
                                             @can('permission-edit')
                                                 <a href="{{ route('permissions.edit', $permission->id) }}" class="custom-edit-btn mr-1">
-                                                    <i data-feather="edit"></i>{{ __('default.table.edit') }}
+                                                    <i class="far fa-edit"></i>{{ __('default.table.edit') }}
                                                 </a> 
                                             @endcan
 
                                             @can('permission-delete')
                                                 <a href="{{ route('permissions.destroy', $permission->id) }}" class="custom-delete-btn delete-permission">
-                                                    <i data-feather="trash"></i>{{ __('default.table.delete') }}
+                                                    <i class="far fa-trash-alt"></i>{{ __('default.table.delete') }}
                                                 </a>
                                             @endcan
                                         </td>

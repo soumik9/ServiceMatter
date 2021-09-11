@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Service;
+use App\Models\ServiceCategory;
+use App\Models\Setting;
 use Brian2694\Toastr\Facades\Toastr;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -49,59 +51,48 @@ class ServiceController extends Controller
 
     public function index()
     {
-        $services = Service::all();
-        return view('admin.services.index', compact('services'));
+        $setting = Setting::find(1);
+        //dd($setting);
+        $services = Service::orderBy('id', 'DESC')->get();
+        return view('admin.services.index', compact('services', 'setting'));
     }
  
     public function create()
     {
-        $roles = Role::all();
-        return view('admin.services.create', compact('roles'));
+        $servicecategories = ServiceCategory::where('status', 1)->get();
+        return view('admin.services.create', compact('servicecategories'));
     }
 
     public function store(Request $request)
     {
         $rules = [
-            'name' 			=> 'required',
-			'email' 		=> 'required|email|unique:services,email',
-			'password' 		=> 'required|min:6|same:confirm-password',
-			'roles' 		=> 'required',
-			'nid' 		    => 'required|unique:services,nid',
-			'mobile' 		=> 'required|string|unique:services,mobile',
-			'image' 		=> 'nullable',
-            'status' 		=> 'required|numeric',
+            'name' 			            => 'required',
+			'slug' 		                => 'required|string|unique:services,slug',
+			'service_category_id' 		=> 'required',
+			'price' 		            => 'required',
+			'description' 		        => 'required|string',
+			'thumbnail' 		        => 'nullable',
+			'image' 		            => 'nullable',
+            'featured' 		            => 'required|numeric',
+            'status' 		            => 'required|numeric',
         ];
 
         $messages = [
-            'name.required'    		=> __('default.form.validation.name.required'),
-            'email.required'    	=> __('default.form.validation.email.required'),
-            'email.email'    		=> __('default.form.validation.email.email'),
-            'email.unique'    		=> __('default.form.validation.email.unique'),
-            'password.required'    	=> __('default.form.validation.password.required'),
-            'password.same'    		=> __('default.form.validation.password.same'),
-            'password.min'    		=> __('default.form.validation.password.min'),
-            'roles.required'    	=> __('service.form.validation.roles.required'),
-            'mobile.required'    	=> __('default.form.validation.mobile.required'),
-            'mobile.unique'    	    => __('default.form.validation.mobile.unique'),
-            'nid.required'    	    => __('default.form.validation.nid.required'),
-            'nid.unique'    	    => __('default.form.validation.nid.unique'),
-            'status.required'    	=> __('default.form.validation.status.required'),
+            'name.required'    		            => __('default.form.validation.name.required'),
+            'slug.required'    	                => __('default.form.validation.slug.required'),
+            'slug.unique'    		            => __('default.form.validation.slug.unique'),
+            'service_category_id.required'    	=> __('default.form.validation.category.required'),
+            'description.required'    	        => __('default.form.validation.description.required'),
+            'price.required'    	            => __('default.form.validation.price.required'),
+            'featured.required'    	            => __('default.form.validation.featured.required'),
+            'status.required'    	            => __('default.form.validation.status.required'),
         ];
-
 
         $this->validate($request, $rules, $messages);
 		$input = request()->all();
 
-		$input['password'] = Hash::make($input['password']);
-
 		try {
-			$service = service::create($input);
-
-            if($request->roles)
-            {
-                $service->assignRole($request->input('roles'));
-            }
-
+			$service = Service::create($input);
             Toastr::success(__('service.message.store.success'));
 		    return redirect()->route('services.index');
 		} catch (Exception $e) {
@@ -112,62 +103,49 @@ class ServiceController extends Controller
 
     public function edit($id)
     {
-        $service = service::find($id);
-        $roles = Role::all();
-        return view('admin.services.edit', compact('service','roles'));
+        $service = Service::find($id);
+        $servicecategories = ServiceCategory::where('status', 1)->get();
+        return view('admin.services.edit', compact('service','servicecategories'));
     }
 
     public function update(Request $request, $id)
     {
         $rules = [
-            'name' 			=> 'required',
-			'email' 		=> 'required|email|unique:services,email,' . $id,
-			'password' 		=> 'nullable|min:6|same:confirm-password',
-			'roles' 		=> 'required',
-			'nid' 		    => 'required|unique:services,nid,' . $id,
-			'mobile' 		=> 'required|string|unique:services,mobile,' . $id,
-			'image' 		=> 'nullable',
-            'status' 		=> 'required|numeric',
+            'name' 			            => 'required',
+			'slug' 		                => 'nullable|string|unique:services,slug,' . $id,
+			'service_category_id' 		=> 'required',
+			'price' 		            => 'required',
+			'description' 		        => 'required|string',
+			'thumbnail' 		        => 'nullable',
+			'image' 		            => 'nullable',
+            'featured' 		            => 'required|numeric',
+            'status' 		            => 'required|numeric',
         ];
 
         $messages = [
-            'name.required'    		=> __('default.form.validation.name.required'),
-            'email.required'    	=> __('default.form.validation.email.required'),
-            'email.email'    		=> __('default.form.validation.email.email'),
-            'email.unique'    		=> __('default.form.validation.email.unique'),
-            'password.same'    		=> __('default.form.validation.password.same'),
-            'password.min'    		=> __('default.form.validation.password.min'),
-            'roles.required'    	=> __('service.form.validation.roles.required'),
-            'mobile.required'    	=> __('default.form.validation.mobile.required'),
-            'mobile.unique'    	    => __('default.form.validation.mobile.unique'),
-            'nid.required'    	    => __('default.form.validation.nid.required'),
-            'nid.unique'    	    => __('default.form.validation.nid.unique'),
-            'status.required'    	=> __('default.form.validation.status.required'),
+            'name.required'    		            => __('default.form.validation.name.required'),
+            'slug.unique'    		            => __('default.form.validation.slug.unique'),
+            'service_category_id.required'    	=> __('default.form.validation.category.required'),
+            'description.required'    	        => __('default.form.validation.description.required'),
+            'price.required'    	            => __('default.form.validation.price.required'),
+            'featured.required'    	            => __('default.form.validation.featured.required'),
+            'status.required'    	            => __('default.form.validation.status.required'),
         ];
                
         $this->validate($request, $rules, $messages);
 		$input = $request->all();
-		$service = service::find($id);
+		$service = Service::find($id);
 
 		if (empty($input['image'])) {
 			$input['image'] = $service->image;
 		}
 
-		if(!empty($input['password'])){
-			$input['password'] = Hash::make($input['password']);
-		}else{
-			$input['password'] = $service->password;
+		if (empty($input['thumbnail'])) {
+			$input['thumbnail'] = $service->thumbnail;
 		}
 
 		try {
 			$service->update($input);
-            $service->roles()->detach(); //delete all the roles
-
-            if($request->roles)
-            {
-                $service->assignRole($request->input('roles'));
-            }
-
             Toastr::success(__('service.message.update.success'));
 		    return redirect()->route('services.index');
 		} catch (Exception $e) {
@@ -179,7 +157,7 @@ class ServiceController extends Controller
     public function destroy($id)
     {
         try {
-            $service = service::find($id)->delete();
+            $service = Service::find($id)->delete();
             return back()->with(Toastr::error(__('service.message.destroy.success')));
 		} catch (Exception $e) {
             $error_msg = Toastr::error(__('service.message.destroy.error'));
@@ -189,7 +167,7 @@ class ServiceController extends Controller
 
     public function status_update(Request $request)
     {
-        $service = service::findOrFail($request->service_id);
+        $service = Service::findOrFail($request->service_id);
         $service->status = $request->status;
         $service->save();
 

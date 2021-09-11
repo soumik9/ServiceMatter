@@ -19,115 +19,115 @@ class ServiceCategorySeeder extends Seeder
                 //1
                 'name' => 'AC',
                 'slug' => 'ac',
-                'image' => '1521969345.png',
+                'status' => 1,
             ],
             [
                 //2
                 'name' => 'Beauty',
                 'slug' => 'beauty',
-                'image' => '1521969358.png',
+                'status' => 1,
             ],
             [
                 //3
                 'name' => 'Plumbing',
                 'slug' => 'plumbing',
-                'image' => '1521969409.png',
+                'status' => 1,
             ],
             [
                 //4
                 'name' => 'Electrical',
                 'slug' => 'electrical',
-                'image' => '1521969419.png',
+                'status' => 1,
             ],
             [
                 //5
                 'name' => 'Home Cleaning',
                 'slug' => 'home-cleaning',
-                'image' => '1521969446.png',
+                'status' => 1,
             ],
             [
                 //6
                 'name' => 'Shower Filter',
                 'slug' => 'shower-filter',
-                'image' => '1521969430.png',
+                'status' => 1,
             ],
             [
                 //7
                 'name' => 'Computer Repair',
                 'slug' => 'computer-repair',
-                'image' => '1521969512.png',
+                'status' => 1,
             ],
             [
                 //8
                 'name' => 'TV',
                 'slug' => 'tv',
-                'image' => '1521969522.png',
+                'status' => 1,
             ],
             [
                 //9
                 'name' => 'Car',
                 'slug' => 'car',
-                'image' => '1521969599.png',
+                'status' => 1,
             ],
             [
                 //10
                 'name' => 'Geyser',
                 'slug' => 'geyser',
-                'image' => '1521972593.png',
+                'status' => 1,
             ],
             [
                 //11
                 'name' => 'Chimney Hob',
                 'slug' => 'chinmey-hob',
-                'image' => '1521969490.png',
+                'status' => 1,
             ],
             [
                 //12
                 'name' => 'Refrigerator',
                 'slug' => 'refrigerator',
-                'image' => '1521969536.png',
+                'status' => 1,
             ],
             [
                 //13
                 'name' => 'Carpentry',
                 'slug' => 'carpentry',
-                'image' => '1521969454.png',
+                'status' => 1,
             ],
             [
                 //14
                 'name' => 'Painting',
                 'slug' => 'painting',
-                'image' => '1521972643.png',
+                'status' => 1,
             ],
             [
                 //15
                 'name' => 'Home Automation',
                 'slug' => 'home-automation',
-                'image' => '1521969622.png',
+                'status' => 1,
             ],
             [
                 //16
                 'name' => 'Laundry',
                 'slug' => 'laundry',
-                'image' => '1521972624.png',
+                'status' => 1,
             ],
             [
                 //17
                 'name' => 'Document',
                 'slug' => 'document',
-                'image' => '1521974355.png',
+                'status' => 1,
             ],
             [
                 //18
                 'name' => 'Movers & Packers',
                 'slug' => 'movers-packers',
-                'image' => '1521969599.png',
+                'status' => 1,
             ],
             [
                 //19
                 'name' => 'Pest Control ',
                 'slug' => 'pest-control',
-                'image' => '1521969464.png',
+                'status' => 1,
             ],
         ]);
     }

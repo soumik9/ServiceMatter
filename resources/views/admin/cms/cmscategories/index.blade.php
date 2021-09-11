@@ -75,13 +75,13 @@
                                             <td>
                                                 @can('cmscategory-edit')
                                                     <a href="{{ route('cmscategories.edit', $cmscategory->id) }}" class="custom-edit-btn mr-1">
-                                                        <i data-feather="edit"></i>{{ __('default.table.edit') }}
+                                                        <i class="far fa-edit"></i>{{ __('default.table.edit') }}
                                                     </a> 
                                                 @endcan
 
                                                 @can('cmscategory-delete')
                                                     <a href="{{ route('cmscategories.destroy', $cmscategory->id) }}" class="custom-delete-btn delete-cmscategory">
-                                                        <i data-feather="trash"></i>{{ __('default.table.delete') }}
+                                                        <i class="far fa-trash-alt"></i>{{ __('default.table.delete') }}
                                                     </a>
                                                 @endcan
                                             </td>

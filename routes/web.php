@@ -13,9 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/', 					[App\Http\Controllers\Frontend\IndexController::class, 'index'])->name('home');
+Route::get('/service-categories', 	[App\Http\Controllers\Frontend\IndexController::class, 'serviceCategories'])->name('home.service.categories');
+Route::get('/service-categories/{slug}', 	[App\Http\Controllers\Frontend\IndexController::class, 'servicesByCategory'])->name('home.servicesbycategories');
+Route::get('/service-details/{slug}', 	    [App\Http\Controllers\Frontend\IndexController::class, 'servicesDetails'])->name('home.service.details');
 
 
 
@@ -36,14 +41,14 @@ Route::prefix('admin')->group(function () {
 
 		Route::get('/dashboard', 			[App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
 
-        Route::prefix('sliders')->group(function(){
-            Route::get('/index', 			[App\Http\Controllers\Admin\SliderController::class, 'index'])->name('sliders.index');
-            Route::get('/create', 			[App\Http\Controllers\Admin\SliderController::class, 'create'])->name('sliders.create');
-            Route::post('/store', 			[App\Http\Controllers\Admin\SliderController::class, 'store'])->name('sliders.store');
-            Route::get('/edit/{id}', 		[App\Http\Controllers\Admin\SliderController::class, 'edit'])->name('sliders.edit');
-            Route::post('/update/{id}', 	[App\Http\Controllers\Admin\SliderController::class, 'update'])->name('sliders.update');
-            Route::get('/destroy/{id}', 	[App\Http\Controllers\Admin\SliderController::class, 'destroy'])->name('sliders.destroy');
-            Route::get('/status_update', 	[App\Http\Controllers\Admin\SliderController::class, 'status_update'])->name('sliders.status_update');
+        Route::prefix('slides')->group(function(){
+            Route::get('/index', 			[App\Http\Controllers\Admin\SliderController::class, 'index'])->name('slides.index');
+            Route::get('/create', 			[App\Http\Controllers\Admin\SliderController::class, 'create'])->name('slides.create');
+            Route::post('/store', 			[App\Http\Controllers\Admin\SliderController::class, 'store'])->name('slides.store');
+            Route::get('/edit/{id}', 		[App\Http\Controllers\Admin\SliderController::class, 'edit'])->name('slides.edit');
+            Route::post('/update/{id}', 	[App\Http\Controllers\Admin\SliderController::class, 'update'])->name('slides.update');
+            Route::get('/destroy/{id}', 	[App\Http\Controllers\Admin\SliderController::class, 'destroy'])->name('slides.destroy');
+            Route::get('/status_update', 	[App\Http\Controllers\Admin\SliderController::class, 'status_update'])->name('slides.status_update');
         });
 
         Route::prefix('servicecategories')->group(function(){

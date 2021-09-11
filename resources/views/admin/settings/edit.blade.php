@@ -270,11 +270,11 @@
                                             <div class="card-body">
                                                               
                                                 <div class="form-group">
-                                                    <label for="currency">{{__('default.form.currency')}}:</label>
-                                                    <select name="currency" id="currency" class="form-control" value="{{$setting->currency}}">
+                                                    <label for="currency_id">{{__('default.form.currency')}}:</label>
+                                                    <select name="currency_id" id="currency_id" class="form-control">
                                                     <option value="">Select Currency</option>
                                                         @foreach($currencies as $currency)
-                                                            <option value="{{$currency->id}}" @if($currency->id == $setting->currency) selected @endif>{{$currency->name}} ({{$currency->code}})</option>
+                                                            <option value="{{ $currency->id }}" @if($currency->id == $setting->currency_id) selected @endif>{{$currency->name}} ({{$currency->code}})</option>
                                                         @endforeach
                                                     </select>
                 

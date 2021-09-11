@@ -23,6 +23,7 @@ class AdminSeeder extends Seeder
                 'email'     => 'admin@example.com',
                 'nid'       => '121220000',
                 'mobile'    => '01689201370',
+                'utype'     => 'ADM',
                 'password'  => bcrypt('abc123'),
                 'status'    => 1
             ]);

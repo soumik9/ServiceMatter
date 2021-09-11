@@ -22,6 +22,10 @@ return [
 
     'setting'               => 'Setting',
     'settings'              => 'Settings',
+
+    'slide'                 => 'Slide',
+    'slides'                => 'Slides',
+
    
     'cms'                   => 'CMS',
 
