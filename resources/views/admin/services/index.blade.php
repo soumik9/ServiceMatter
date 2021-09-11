@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 @section('title') 
-    {{ __('service.index.title') }} 
+   
 @endsection
 
 @push('css')
@@ -48,7 +48,7 @@
                 <div class="card-body">
 
                     <div class="table-responsive">
-                        <table class="datatable table table-hover table-center mb-0 custom-table" id="datatable">
+                        <table class="datatable table table-hover table-center mb-0 custom-table">
                             <thead>
                                 <tr>
                                     <th>{{ __('default.table.sl') }}</th>

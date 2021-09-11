@@ -177,8 +177,8 @@
                                 @csrf
                             </form> --}}
                         @else
-                            <li class="login-form"> <a href="" title="Register">Register</a></li>
-                            <li class="login-form"> <a href="" title="Login">Login</a></li>
+                            <li class="login-form"> <a href="{{ route('register') }}" title="Register">Register</a></li>
+                            <li class="login-form"> <a href="{{ route('login') }}" title="Login">Login</a></li>
                         @endauth
                     {{-- @endif --}}
 

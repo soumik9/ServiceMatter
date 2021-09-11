@@ -110,7 +110,7 @@
 					<li class="nav-item dropdown has-arrow">
 						<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
 							<span class="user-img">
-								@if (Auth::user()->image)
+								@if(!empty(Auth::user()->image))
 									<img class="rounded-circle" src="{{ Auth::user()->image }}" width="31" alt="{{ Auth::user()->name }}">
 								@else
 									<img class="rounded-circle" src="{{ asset('assets/admin/img/default-user.png') }}" width="31">
@@ -124,7 +124,7 @@
 									<img src="{{ asset('assets/admin/img/profiles/avatar-01.jpg') }}" alt="User Image" class="avatar-img rounded-circle">
 								</div> --}}
 								<div class="user-text">
-									<h6>{{ Auth::user()->name }}</h6>
+									<h6>@if(!empty(Auth::user()->name)){{ Auth::user()->name }} @else Jhon @endif</h6>
 									{{-- <p class="text-muted mb-0">Administrator</p> --}}
 								</div>
 							</div>

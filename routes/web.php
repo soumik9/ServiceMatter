@@ -26,6 +26,11 @@ Route::get('/autocomplete',     [App\Http\Controllers\Frontend\IndexController::
 Route::post('/search',          [App\Http\Controllers\Frontend\IndexController::class, 'searchService'])->name('searchService');
 
 
+Route::get('/login', 			[App\Http\Controllers\Frontend\Auth\LoginController::class, 'login'])->name('login');
+Route::post('/login', 			[App\Http\Controllers\Frontend\Auth\LoginController::class, 'login_go'])->name('login_go');
+Route::get('/registration', 	[App\Http\Controllers\Frontend\Auth\RegisterController::class, 'register'])->name('register');
+Route::post('/registration', 	[App\Http\Controllers\Frontend\Auth\RegisterController::class, 'register_go'])->name('register_go');
+
 
 Route::prefix('admin')->group(function () {
 
