@@ -28,9 +28,22 @@ Route::post('/search',          [App\Http\Controllers\Frontend\IndexController::
 
 Route::get('/login', 			[App\Http\Controllers\Frontend\Auth\LoginController::class, 'login'])->name('login');
 Route::post('/login', 			[App\Http\Controllers\Frontend\Auth\LoginController::class, 'login_go'])->name('login_go');
+Route::get('/logout', 			[App\Http\Controllers\Frontend\Auth\LoginController::class, 'logout'])->name('logout');
+
 Route::get('/registration', 	[App\Http\Controllers\Frontend\Auth\RegisterController::class, 'register'])->name('register');
 Route::post('/registration', 	[App\Http\Controllers\Frontend\Auth\RegisterController::class, 'register_go'])->name('register_go');
 
+
+Route::prefix('provider')->group(function () {
+    Route::group(['middleware' => ['auth']], function(){
+
+    });
+});
+Route::prefix('customer')->group(function () {
+    Route::group(['middleware' => ['auth']], function(){
+
+    });
+});
 
 Route::prefix('admin')->group(function () {
 

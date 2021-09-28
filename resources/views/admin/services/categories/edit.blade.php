@@ -67,7 +67,7 @@
 
                                 <div class="form-group">
                                     <label for="slug" class="required">{{ __('default.form.slug') }}</label>
-                                    <input type="text" class="form-control" name="slug" id="slug" value="{{ $servicecategory->id }}">
+                                    <input type="text" class="form-control" name="slug" id="slug" disabled value="{{ $servicecategory->slug }}">
 
                                     @error('slug')
                                         <span class="text-danger">{{ $message }}</span>
@@ -115,7 +115,7 @@
                                             @if (!empty($servicecategory->image))
                                                 <img src="{{ $servicecategory->image }}" alt="..." id="output" class="img-thumbnail rounded mx-auto d-block mb-3" onerror="this.src='{{ asset('assets/admin/img/default-service.gif') }}';" style="width: 100%;">
                                             @else
-                                                <img src="" alt="..." id="output" class="img-thumbnail rounded mx-auto d-block mb-3"   onerror="this.src='{{ asset('assets/admin/img/default-service.gif') }}';">
+                                                <img src="" alt="..." id="output" class="img-thumbnail rounded mx-auto d-block mb-3"   onerror="this.src='{{ asset('assets/admin/img/default-service.gif') }}';" style="width: 100%;">
                                             @endif
                                          
 

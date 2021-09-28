@@ -84,7 +84,11 @@
                                         </td>
 
                                         <td>
-                                            <input type="checkbox" class="servicecategory-status" data-id="{{ $servicecategory->id }}" {{ $servicecategory->status == 1 ? 'checked' : '' }} data-toggle="toggle" data-on="Active" data-off="De-active" data-onstyle="success" data-offstyle="danger" data-style="slow">
+                                            @if($servicecategory->status == 1)
+                                                <span class="custom-badge-success">Active</span>
+                                            @else
+                                                <span class="custom-badge-danger">Inactive</span>
+                                            @endif
                                         </td>
 
                                         @if(auth()->user()->can('servicecategory-edit') || auth()->user()->can('servicecategory-delete'))
@@ -116,28 +120,6 @@
 @endsection
 
 @push('scripts')
-<script>
-$(function() {
-    $('.servicecategory-status').change(function() {
-        var status = $(this).prop('checked') == true ? 1 : 0; 
-        var servicecategory_id = $(this).data('id');  
-        $.ajax({
-            type: "GET",
-            dataType: "json",
-            url: '{{ route('servicecategories.status_update') }}',
-            data: {'status': status, 'servicecategory_id': servicecategory_id},
-            success: function(data){
-                if(status == 1){
-                    toastr.success(data.message);
-                }else{
-                    toastr.error(data.message);
-                } 
-            }
-        });
-    })
-  })
-</script>
-
 <script type="text/javascript">
     $('.delete-servicecategory').on('click', function (event) {
         event.preventDefault();

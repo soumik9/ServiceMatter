@@ -7,6 +7,10 @@
     
 @endpush
 
+@php
+    $setting = \App\Models\Setting::find(1);
+@endphp
+
 @section('content')
 <div>
     <section class="tp-banner-container">
@@ -97,7 +101,7 @@
                                         <p>{{ $featured_service->tagline }}</p>
                                         <div class="content-btn">
                                             <a href="{{ route('home.service.details', $featured_service->slug) }}" class="btn btn-primary">Book Now</a></div>
-                                        <div class="price">৳ {{ $featured_service->price }}</div>
+                                        <div class="price">{{ $setting->currency->symbol }} {{ $featured_service->price }}</div>
                                     </div>
                                 </a>
                             </div>
@@ -183,7 +187,7 @@
                                 <div class="content-btn">
                                     <a href="{{ route('home.service.details', $appliance_service->slug) }}"class="btn btn-primary">Book Now</a>
                                 </div>
-                                <div class="price">৳ {{ $appliance_service->price }}</div>
+                                <div class="price">{{ $setting->currency->symbol }} {{ $appliance_service->price }}</div>
                             </div>
                         </a>
                     </div>

@@ -23,11 +23,13 @@
     <link href="{{asset('assets/frontend/css/dtb/jquery.dataTables.min.css')}}" rel="stylesheet" media="screen">
     <link href="{{asset('assets/frontend/css/select2.min.css')}}" rel="stylesheet" media="screen">
     <link href="{{asset('assets/frontend/css/toastr.min.css')}}" rel="stylesheet" media="screen">
+    <link rel="stylesheet" href="{{ asset('assets/admin/css/toastr.min.css') }}">
     <link href="{{asset('assets/frontend/css/custom.css')}}" rel="stylesheet" media="screen">
     <script type="text/javascript" src="{{asset('assets/frontend/js/jquery.js')}}"></script>
     <script type="text/javascript" src="{{asset('assets/frontend/js/jquery-ui.1.10.4.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset('assets/frontend/js/toastr.min.js')}}"></script>
+
     <script type="text/javascript" src="{{asset('assets/frontend/js/modernizr.js')}}"></script>
+
 </head>
 
 <body>
@@ -360,6 +362,10 @@
     <script type="text/javascript" src="{{asset('assets/frontend/js/validation-rule.js')}}"></script>
     <script type="text/javascript" src="{{asset('assets/frontend/js/bootstrap3-typeahead.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('assets/frontend/js/main.js')}}"></script>
+
+    <script type="text/javascript" src="{{asset('assets/frontend/js/toastr.min.js')}}"></script>
+    <script src="{{ asset('assets/admin/js/toastr.min.js') }}"></script>
+    {!! Toastr::message() !!}
 
 
 

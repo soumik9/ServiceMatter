@@ -22,7 +22,7 @@
                         <div class="thinborder-ontop">
 
                             
-                            <form id="userregisterationform" method="POST" action="{{ route('register') }}" class="registration-form"> 
+                            <form method="POST" action="{{ route('register_go') }}" class="registration-form"> 
                                 @csrf                                   
                                 <div class="form-group row">
                                     <label for="name" class="col-md-4 col-form-label text-md-right">Name</label>
@@ -46,29 +46,31 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="password-confirm"
+                                    <label for="confirm-password"
                                         class="col-md-4 col-form-label text-md-right">Confirm Password</label>
                                     <div class="col-md-6">
-                                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                                        <input id="confirm-password" type="password" class="form-control" name="confirm-password" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="phone" class="col-md-4 col-form-label text-md-right">Phone</label>
+                                    <label for="mobile" class="col-md-4 col-form-label text-md-right">Mobile</label>
                                     <div class="col-md-6">
-                                        <input id="phone" type="text" class="form-control" name="phone" required>
+                                        <input id="mobile" type="text" class="form-control" name="mobile" required>
                                     </div>
                                 </div>          
                                 
                                 <div class="form-group row">
-                                    <label for="phone" class="col-md-4 col-form-label text-md-right">Register As</label>
+                                    <label for="utype" class="col-md-4 col-form-label text-md-right">Register As</label>
                                     <div class="col-md-6">
-                                        <select class="form-control" name="registeras" id="registeras">
+                                        <select class="form-control" name="utype" id="utype">
                                             <option value="CST">Customer</option>
                                             <option value="SVP">Service Provider</option>
                                         </select>
                                     </div>
                                 </div>
+
+                                <input type="hidden" class="form-control" name="status" value="1">
 
                                 <div class="form-group row mb-0">
                                     <div class="col-md-10">

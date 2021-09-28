@@ -113,8 +113,8 @@
 
                                     <select name="discount_type" id="discount_type" class="select2">
                                         <option value="">Select discount type</option>
-                                        <option value="fixed" @if($service->featured == 'fixed') selected @endif>Fixed</option>
-                                        <option value="percent" @if($service->featured == 'percent') selected @endif>Percent</option>
+                                        <option value="fixed" @if($service->discount_type == 'fixed') selected @endif>Fixed</option>
+                                        <option value="percent" @if($service->discount_type == 'percent') selected @endif>Percent</option>
                                     </select>
 
                                     @error('discount_type')
@@ -228,14 +228,6 @@
             var output = document.getElementById('output');
             output.src = URL.createObjectURL(event.target.files[0]);
         };
-    </script>
-
-    <script type="text/javascript">
-        $("#name").keyup(function(){
-            var name = this.value;
-            name = name.replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-').toLowerCase();
-            $("#slug").val(name);
-        })
     </script>
 
     <script>

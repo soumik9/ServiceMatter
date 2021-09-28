@@ -17,7 +17,7 @@
 			<link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/admin/img/icons/icon.png') }}">
 		@endif
 
-		<!-- css -->
+		<!-- css --> 
 		<link rel="stylesheet" href="{{ asset('assets/admin/css/bootstrap.min.css') }}">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
 		<link rel="stylesheet" href="{{ asset('assets/admin/css/font-awesome.min.css') }}">
@@ -43,12 +43,15 @@
 						@if (!empty($setting->website_logo_dark))
 							<img src="{{ $setting->website_logo_dark }}" alt="Logo">
 						@else
-							<img src="{{ asset('assets/admin/img/logo.png') }}" alt="Logo">
+							<img src="{{ asset('assets/admin/img/logo-def.png') }}" alt="Logo">
 						@endif
-						
 					</a>
 					<a href="{{ route('dashboard') }}" class="logo logo-small">
-						<img src="{{ asset('assets/admin/img/logo-small.png') }}" alt="Logo" width="30" height="30">
+						@if (!empty($setting->website_logo_small))
+							<img src="{{ $setting->website_logo_small }}" alt="Logo" width="30" height="30">
+						@else
+							<img src="{{ asset('assets/admin/img/logo-def.png') }}" alt="Logo" width="30" height="30">
+						@endif
 					</a>
                 </div><!-- /Logo -->
 				
@@ -72,6 +75,14 @@
 				<!-- Header Right Menu -->
 				<ul class="nav user-menu">
 					
+					<!-- Live View -->
+					<li class="nav-item">
+						<a href="{{ route('home') }}" target="_blank" class="nav-link">
+							<i data-feather="cast"></i>
+						</a>
+					</li>
+					<!-- /Live View -->
+
 					<!-- Notifications -->
 					<li class="nav-item dropdown noti-dropdown">
 						<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
@@ -129,7 +140,12 @@
 								</div>
 							</div>
 							<a class="dropdown-item" href="#">Profile</a>
-							<a class="dropdown-item" href="{{ route('admin.logout') }}">Logout</a>
+							@if(Auth::user()->utype == 'ADM')
+								<a class="dropdown-item" href="{{ route('admin.logout') }}">Logout</a>
+							@else
+								<a class="dropdown-item" href="{{ route('logout') }}">Logout</a>
+							@endif
+							
 						</div>
 					</li>
 					<!-- /User Menu -->

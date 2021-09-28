@@ -7,6 +7,10 @@
     
 @endpush
 
+@php
+    $setting = \App\Models\Setting::find(1);
+@endphp
+
 @section('content')
 <div>
 
@@ -27,9 +31,6 @@
     </div>
 
     <section class="content-central">
-        {{-- <div class="semiboxshadow text-center">
-            <img src="{{ asset('images/services') }}/{{ $service->image }}" class="img-responsive" alt="{{ $service->name }}">
-        </div> --}}
         <div class="content_info">
             <div class="paddings-mini">
                 <div class="container">
@@ -82,20 +83,16 @@
                                         <table class="table">
                                             <tr>
                                                 <td style="border-top: none;">Price</td>
-                                                <td style="border-top: none;">৳ {{ $service->price }}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Quntity</td>
-                                                <td>1</td>
+                                                <td style="border-top: none;">{{ $setting->currency->symbol }} {{ $service->price }}</td>
                                             </tr>
 
                                             @php $total = $service->price; @endphp
 
-                                            @if ($service->discount)
+                                            @if($service->discount)
                                                 @if($service->discount_type == 'fixed')
                                                     <tr>
                                                         <td>Discount</td>
-                                                        <td>৳ {{ $service->discount }}</td>
+                                                        <td>{{ $setting->currency->symbol }} {{ $service->discount }}</td>
                                                     </tr>
                                                     @php
                                                          $total = $service->price - $service->discount;
@@ -144,7 +141,7 @@
                                                 <div class="content-btn">
                                                     <a href="" class="btn btn-warning">View Details</a>
                                                 </div>
-                                                <div class="price">৳ {{ $r_service->price }}</div>
+                                                <div class="price">{{ $setting->currency->symbol }} {{ $r_service->price }}</div>
                                             </div>
                                         </a>
                                     </div> 

@@ -7,13 +7,13 @@
 <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-        <title>Doccure - Forgot Password</title>
+        <title>@if(!empty($setting->website_title)){{ $setting->website_title }} @else Soumik @endif - Forgot Password</title>
 		
 		<!-- Favicon -->
         @if (!empty($setting->website_favicon))
-        <link rel="shortcut icon" type="image/x-icon" href="{{ $setting->website_favicon }}">
+        	<link rel="shortcut icon" type="image/x-icon" href="{{ $setting->website_favicon }}">
         @else 
-            <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/admin/img/favicon.png') }}">
+			<link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/admin/img/icons/icon.png') }}">
         @endif
 
 		<!-- Bootstrap CSS -->
@@ -34,7 +34,11 @@
             	<div class="container">
                 	<div class="loginbox">
                     	<div class="login-left">
-							<img class="img-fluid" src="{{ asset('assets/admin/img/logo-white.png') }}" alt="Logo">
+							@if (!empty($setting->website_logo_dark))
+								<img class="img-fluid" src="{{ $setting->website_logo_dark }}" alt="Logo">
+							@else 
+								<img class="img-fluid" src="{{ asset('assets/admin/img/logo-def.png') }}" alt="Logo">
+							@endif 
                         </div>
                         <div class="login-right">
 							<div class="login-right-wrap">

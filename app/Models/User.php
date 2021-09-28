@@ -25,7 +25,7 @@ class User extends Authenticatable
         'password',
         'nid',
         'mobile',
-        'user_type',
+        'utype',
         'image',
         'status',
     ];

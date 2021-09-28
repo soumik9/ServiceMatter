@@ -22,7 +22,7 @@
                         <div class="thinborder-ontop">
 
                             
-                            <form id="userloginform" method="POST" action="{{ route('login') }}" class="login-form">   
+                            <form id="userloginform" method="POST" action="{{ route('login_go') }}" class="login-form">   
                             @csrf        
 
                                 <div class="form-group row">

@@ -25,7 +25,7 @@
                         
                         <ul style="display: none;">
 
-                            @can('cmscategory-list')
+                            @can('servicecategory-list')
                                 <li>
                                     <a href="{{ route('servicecategories.index') }}" title="{{ __('sidebar.categories') }}" class="sidebar-link {{ request()->is('admin/servicecategories*') ? 'active' : '' }}">
                                         <span class="hide-menu">{{ __('sidebar.categories') }}</span>
@@ -33,7 +33,7 @@
                                 </li>
                             @endcan
 
-                            @can('cms-list')
+                            @can('service-list')
                                 <li>
                                     <a href="{{ route('services.index') }}" title="{{ __('sidebar.services') }}" class="sidebar-link {{ request()->is('admin/services*') ? 'active' : '' }}">
                                         <span class="hide-menu">{{ __('sidebar.services') }}</span>

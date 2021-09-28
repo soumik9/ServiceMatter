@@ -7,6 +7,10 @@
     
 @endpush
 
+@php
+    $setting = \App\Models\Setting::find(1);
+@endphp
+
 @section('content')
 <div>
 
@@ -61,7 +65,7 @@
                                             <div class="content-btn">
                                                 <a href="{{ route('home.service.details', $service->slug) }}"class="btn btn-primary">Book Now</a>
                                             </div>
-                                            <div class="price"><span>&#36;</span><b>From</b>{{ $service->price }}</div>
+                                            <div class="price">{{ $setting->currency->symbol }} {{ $service->price }}</div>
                                             
                                         </div>
                                     </a>

@@ -99,7 +99,7 @@ class ServiceCategoryController extends Controller
     {
         $rules = [
             'name' 			=> 'required',
-			'slug' 		    => 'nullable|string|unique:service_categories,slug,' . $id,
+			//'slug' 		    => 'nullable|string|unique:service_categories,slug,' . $id,
 			'image' 		=> 'nullable',
             'featured' 		=> 'required|numeric',
             'status' 		=> 'required|numeric',
@@ -107,7 +107,7 @@ class ServiceCategoryController extends Controller
 
         $messages = [
             'name.required'    		=> __('default.form.validation.name.required'),
-            'slug.unique'    		=> __('default.form.validation.slug.unique'),
+            //'slug.unique'    		=> __('default.form.validation.slug.unique'),
             'featured.required'    	=> __('default.form.validation.featured.required'),
             'status.required'    	=> __('default.form.validation.status.required'),
         ];

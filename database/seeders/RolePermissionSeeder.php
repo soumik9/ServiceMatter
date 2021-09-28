@@ -21,6 +21,16 @@ class RolePermissionSeeder extends Seeder
             'code' => 'admin',
         ]);
 
+        $role_svp = Role::create([
+            'name' => 'Provider',
+            'code' => 'SVP',
+        ]);
+
+        $role_cst = Role::create([
+            'name' => 'Customer',
+            'code' => 'CST',
+        ]);
+
         //permission list as array
         $permissions = [
             'user-list',

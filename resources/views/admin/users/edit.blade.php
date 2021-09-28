@@ -28,7 +28,7 @@
                             </div>
                             <div class="col-md-3">
                                 <div class="create-btn pull-right">
-                                    <button type="submit" class="btn custom-create-btn">{{ __('default.form.save-button') }}</button>
+                                    <button type="submit" class="btn custom-create-btn">{{ __('default.form.update-button') }}</button>
                                 </div>
                             </div>
                         </div>
