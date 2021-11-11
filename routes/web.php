@@ -22,6 +22,10 @@ Route::get('/service-categories', 	[App\Http\Controllers\Frontend\IndexControlle
 Route::get('/service-categories/{slug}', 	[App\Http\Controllers\Frontend\IndexController::class, 'servicesByCategory'])->name('home.servicesbycategories');
 Route::get('/service-details/{slug}', 	    [App\Http\Controllers\Frontend\IndexController::class, 'servicesDetails'])->name('home.service.details');
 
+
+Route::get('/employees', 	    [App\Http\Controllers\Frontend\EmployeeController::class, 'employees'])->name('home.employees');
+
+
 Route::get('/autocomplete',     [App\Http\Controllers\Frontend\IndexController::class, 'autocomplete'])->name('autocomplete');
 Route::post('/search',          [App\Http\Controllers\Frontend\IndexController::class, 'searchService'])->name('searchService');
 
@@ -37,6 +41,16 @@ Route::post('/registration', 	[App\Http\Controllers\Frontend\Auth\RegisterContro
 Route::prefix('provider')->group(function () {
     Route::group(['middleware' => ['auth']], function(){
 
+        Route::prefix('profiles')->group(function(){
+            Route::get('/index', 			[App\Http\Controllers\Provider\ProfileController::class, 'index'])->name('profiles.index');
+            Route::get('/create', 			[App\Http\Controllers\Provider\ProfileController::class, 'create'])->name('profiles.create');
+            Route::post('/store', 			[App\Http\Controllers\Provider\ProfileController::class, 'store'])->name('profiles.store');
+            Route::get('/edit/{id}', 		[App\Http\Controllers\Provider\ProfileController::class, 'edit'])->name('profiles.edit');
+            Route::post('/update/{id}', 	[App\Http\Controllers\Provider\ProfileController::class, 'update'])->name('profiles.update');
+            Route::get('/destroy/{id}', 	[App\Http\Controllers\Provider\ProfileController::class, 'destroy'])->name('profiles.destroy');
+            Route::get('/status_update', 	[App\Http\Controllers\Provider\ProfileController::class, 'status_update'])->name('profiles.status_update');
+        });
+        
     });
 });
 Route::prefix('customer')->group(function () {

@@ -41,4 +41,7 @@ return [
     'currency'              => 'Currency',
     'currencies'            => 'Currencies',
 
+    'profile'               => 'Profile',
+    'profiles'              => 'Profiles',
+
 ];

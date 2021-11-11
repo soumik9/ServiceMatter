@@ -21,16 +21,6 @@ class RolePermissionSeeder extends Seeder
             'code' => 'admin',
         ]);
 
-        $role_svp = Role::create([
-            'name' => 'Provider',
-            'code' => 'SVP',
-        ]);
-
-        $role_cst = Role::create([
-            'name' => 'Customer',
-            'code' => 'CST',
-        ]);
-
         //permission list as array
         $permissions = [
             'user-list',
@@ -83,10 +73,11 @@ class RolePermissionSeeder extends Seeder
             'user-activity',
             'log-view',
 
+            //'provider-menu',
         ];
 
 
-        //create and assign permission 
+        //create and assign permission for admin
         for($i=0; $i<count($permissions); $i++)
         {
             $permission = Permission::create(['name' => $permissions[$i]]);
@@ -94,6 +85,35 @@ class RolePermissionSeeder extends Seeder
             $role->givePermissionTo($permission);
             $permission->assignRole($role);
         }
+
+
+        
+        $role_svp = Role::create([
+            'name' => 'Provider',
+            'code' => 'SVP',
+        ]);
+
+   
+        //permission list as array for provider
+        $permissions_provider = [
+            'provider-menu',
+        ];
+
+         //create and assign permission for provider
+         for($i=0; $i<count($permissions_provider); $i++)
+         {
+             $permission_pro = Permission::create(['name' => $permissions_provider[$i]]);
+ 
+             $role_svp->givePermissionTo($permission_pro);
+             $permission_pro->assignRole($role_svp);
+         }
+
+
+         ///customer
+         $role_cst = Role::create([
+            'name' => 'Customer',
+            'code' => 'CST',
+        ]);
        
     }
 }

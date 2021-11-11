@@ -27,6 +27,12 @@ class User extends Authenticatable
         'mobile',
         'utype',
         'image',
+        'address',
+        'bio',
+        'work_start_time',
+        'work_end_time',
+        'per_hour_charge',
+        'user_service_category_id',
         'status',
     ];
 
@@ -48,4 +54,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // public function service_category_pro()
+    // {
+    //     return $this->belongsTo(ServiceCategory::class,'user_service_category_id');
+    // }
 }

@@ -6,6 +6,15 @@
                     <a href="{{ route('dashboard') }}"><i data-feather="home"></i> <span>{{ __('sidebar.dashboard') }}</span></a>
                 </li>
 
+                {{-- service provider profile --}}
+                @if(auth()->user()->can('provider-menu'))
+                    @can('provider-menu')
+                    <li class="{{ (request()->is('admin/profiles*')) ? 'active' : '' }}"> 
+                        <a href="{{ route('profiles.index') }}"><i data-feather="trello"></i> <span>{{ __('sidebar.profile') }}</span></a>
+                    </li>
+                    @endcan
+                @endif
+
                 {{-- slides --}}
                 @if(auth()->user()->can('slide-list'))
                     @can('slide-list')

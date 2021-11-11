@@ -51,6 +51,8 @@ return [
             'password-confirm'  => 'Confirm Password',
             'role'              => 'Role',
             'status'            => 'Status',
+            'service'           => 'Service',
+            'services'          => 'Services',
             'role-current'      => 'Current Role',
             'add-button'        => 'Add New User',
             'save-button'       => 'Save',
@@ -85,6 +87,14 @@ return [
             'meta_tag'              => 'Meta Tag',
 
 
+            'work_start_time'       => 'Work Start Time',
+            'bio'                   => 'Bio',
+            'work_end_time'         => 'Work End Time',
+            'per_hour_charge'       => 'Per hour charge',
+
+
+
+
             'validation'    => [
                 'password' => [
                     'required'  => 'The password field is required!',
@@ -113,6 +123,9 @@ return [
                 ],
                 'meta_title' => [
                     'required'  => 'The meta title field is required!',
+                ],
+                'service' => [
+                    'required'  => 'The service field is required!',
                 ],
                 'price' => [
                     'required'  => 'The price field is required!',

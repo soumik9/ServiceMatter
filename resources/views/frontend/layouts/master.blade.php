@@ -30,6 +30,8 @@
 
     <script type="text/javascript" src="{{asset('assets/frontend/js/modernizr.js')}}"></script>
 
+    @stack('css')
+
 </head>
 
 <body>
@@ -95,6 +97,7 @@
                     <li class="title">
                         <a href="/"><span style="font-style: italic;">S</span>  ERVICE <span style="font-style: italic;">M</span> ATTER </a>
                     </li>
+                    <li> <a href="{{ route('home.employees') }}">Employees</a></li>
                     <li> <a href="{{ route('home.service.categories') }}">Service Categories</a></li>
                     
                     {{-- 
@@ -154,7 +157,7 @@
                      {{-- @if (Route::has('admin.login')) --}}
                         @auth
                             {{-- @if (Auth::user()->utype === 'ADM') --}}
-                                <li> <a href="#">My Account (Admin)</a>
+                                <li> <a href="#">My Account ({{ Auth::user()->name }})</a>
                                     <ul class="drop-down one-column hover-fade">
                                         <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
                                         <li><a href="{{ route('admin.logout') }}">Logout</a></li>

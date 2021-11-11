@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Brian2694\Toastr\Facades\Toastr;
@@ -35,18 +36,29 @@ class LoginController extends Controller
             $data['remember'] = "off";
         }
 
-        if (Auth::attempt(['email' => $data['email'], 'password' => $data['password']], $request->get('remember'))) {
-            if (Auth::user()->status == 1) {
-                return redirect()->intended('/admin/dashboard');
+        $svp = User::where('utype', 'SVP')->where('email', $data['email'])->get();
+        $cst = User::where('utype', 'CST')->where('email', $data['email'])->get();
+
+
+        if(count($svp) == 1 || count($cst) == 1){
+            if (Auth::attempt(['email' => $data['email'], 'password' => $data['password']], $request->get('remember'))) {
+                if (Auth::user()->status == 1) {
+                    return redirect()->intended('/admin/dashboard');
+                }else{
+                    Auth::logout();
+                    Toastr::error('Your account is Deactivated by Admin!');
+                    return redirect()->back();
+                }
             }else{
-                Auth::logout();
-                Toastr::error('Your account is Deactivated by Admin!');
+                Toastr::error('Credentials Missmatch!');
                 return redirect()->back();
             }
         }else{
-            Toastr::error('Credentials Missmatch!');
+            Toastr::error('Information Missmatch!');
             return redirect()->back();
         }
+
+
     }
 
     public function logout(Request $request) {
