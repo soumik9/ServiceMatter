@@ -110,13 +110,21 @@
                                           
                                             <tr>
                                                 <td>Total</td>
-                                                <td>৳ {{ $total }}</td>
+                                                <td>{{ $setting->currency->symbol }} {{ $total }}</td>
                                             </tr>
                                         </table>
                                     </div>
                                     <div class="panel-footer">
-                                        <form>                                                
-                                            <input type="submit" class="btn btn-primary" name="submit" value=" Book Now">
+                                        <form action="" method="POST">  
+                                        @csrf
+                                            @auth
+                                                <a href="{{ route('payment', $service->slug) }}" class="btn btn-primary">Order Now</a>
+                                            @endauth
+                                          
+                                            @guest
+                                                <p style="color: red;">Login to order</p>
+                                            @endguest                                             
+                                           
                                         </form>
                                     </div>
                                 </div>

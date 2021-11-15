@@ -15,13 +15,12 @@ class RolePermissionSeeder extends Seeder
      */
     public function run()
     {
-        //create role
+          //permission and role for admin
         $role = Role::create([
             'name' => 'Admin',
             'code' => 'admin',
         ]);
 
-        //permission list as array
         $permissions = [
             'user-list',
             'user-create',
@@ -68,16 +67,17 @@ class RolePermissionSeeder extends Seeder
             'slide-edit',
             'slide-delete',
 
+            'order-list',
+            'order-view',
+            'order-edit',
+            'order-delete',
+
             'file-manager',
             'websetting-edit',
             'user-activity',
             'log-view',
-
-            //'provider-menu',
         ];
 
-
-        //create and assign permission for admin
         for($i=0; $i<count($permissions); $i++)
         {
             $permission = Permission::create(['name' => $permissions[$i]]);
@@ -87,33 +87,42 @@ class RolePermissionSeeder extends Seeder
         }
 
 
-        
+        //permission and role for provider
         $role_svp = Role::create([
             'name' => 'Provider',
             'code' => 'SVP',
         ]);
 
-   
-        //permission list as array for provider
         $permissions_provider = [
             'provider-menu',
         ];
 
-         //create and assign permission for provider
-         for($i=0; $i<count($permissions_provider); $i++)
-         {
-             $permission_pro = Permission::create(['name' => $permissions_provider[$i]]);
- 
-             $role_svp->givePermissionTo($permission_pro);
-             $permission_pro->assignRole($role_svp);
-         }
+        for($i=0; $i<count($permissions_provider); $i++)
+        {
+            $permission_pro = Permission::create(['name' => $permissions_provider[$i]]);
+
+            $role_svp->givePermissionTo($permission_pro);
+            $permission_pro->assignRole($role_svp);
+        }
 
 
-         ///customer
-         $role_cst = Role::create([
+        //permission and role for customer
+        $role_cst = Role::create([
             'name' => 'Customer',
             'code' => 'CST',
         ]);
-       
+
+        $permissions_customer = [
+            'customer-menu',
+        ];
+
+        for($i=0; $i<count($permissions_customer); $i++)
+        {
+            $permission_cst = Permission::create(['name' => $permissions_customer[$i]]);
+
+            $role_cst->givePermissionTo($permission_cst);
+            $permission_cst->assignRole($role_cst);
+        }
+    
     }
 }

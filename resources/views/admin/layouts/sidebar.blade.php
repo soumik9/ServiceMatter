@@ -7,12 +7,29 @@
                 </li>
 
                 {{-- service provider profile --}}
+                @if(auth()->user()->can('customer-menu'))
+                    @can('customer-menu')
+                    <li class="{{ (request()->is('customer/orders*')) ? 'active' : '' }}"> 
+                        <a href="{{ route('customer.orders.index') }}"><i data-feather="archive"></i> <span>{{ __('sidebar.orders') }}</span></a>
+                    </li>
+                    @endcan
+                @endif
+
+                {{-- service provider profile --}}
                 @if(auth()->user()->can('provider-menu'))
                     @can('provider-menu')
                     <li class="{{ (request()->is('admin/profiles*')) ? 'active' : '' }}"> 
                         <a href="{{ route('profiles.index') }}"><i data-feather="trello"></i> <span>{{ __('sidebar.profile') }}</span></a>
                     </li>
                     @endcan
+                @endif
+
+                
+                {{-- admin order --}}
+                @if(auth()->user()->can('order-list') || auth()->user()->can('order-view') || auth()->user()->can('order-edit'))
+                    <li class="{{ (request()->is('admin/orders')) ? 'active' : '' }}"> 
+                        <a href="{{ route('admin.orders.index') }}"><i data-feather="archive"></i> <span>{{ __('sidebar.orders') }}</span></a>
+                    </li>
                 @endif
 
                 {{-- slides --}}

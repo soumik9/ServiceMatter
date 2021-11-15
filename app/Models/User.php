@@ -59,4 +59,9 @@ class User extends Authenticatable
     // {
     //     return $this->belongsTo(ServiceCategory::class,'user_service_category_id');
     // }
+
+    public function customer_order()
+    {
+        return $this->hasMany(Order::class);
+    }
 }

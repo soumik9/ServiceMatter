@@ -38,6 +38,23 @@ Route::get('/registration', 	[App\Http\Controllers\Frontend\Auth\RegisterControl
 Route::post('/registration', 	[App\Http\Controllers\Frontend\Auth\RegisterController::class, 'register_go'])->name('register_go');
 
 
+// SSLCOMMERZ Start
+//Route::get('/payment/{slug}',      [App\Http\Controllers\SslCommerzPaymentController::class, 'exampleEasyCheckout'])->name('payment');
+Route::get('/example1',            [App\Http\Controllers\SslCommerzPaymentController::class, 'exampleEasyCheckout']);
+Route::get('/payment/{slug}',      [App\Http\Controllers\SslCommerzPaymentController::class, 'exampleHostedCheckout'])->name('payment');
+//Route::get('/example2',      [App\Http\Controllers\SslCommerzPaymentController::class, 'exampleHostedCheckout']);
+
+Route::post('/pay',          [App\Http\Controllers\SslCommerzPaymentController::class, 'index']);
+Route::post('/pay-via-ajax', [App\Http\Controllers\SslCommerzPaymentController::class, 'payViaAjax']);
+
+Route::post('/success',      [App\Http\Controllers\SslCommerzPaymentController::class, 'success']);
+Route::post('/fail',         [App\Http\Controllers\SslCommerzPaymentController::class, 'fail']);
+Route::post('/cancel',       [App\Http\Controllers\SslCommerzPaymentController::class, 'cancel']);
+
+Route::post('/ipn',          [App\Http\Controllers\SslCommerzPaymentController::class, 'ipn']);
+//SSLCOMMERZ END
+
+
 Route::prefix('provider')->group(function () {
     Route::group(['middleware' => ['auth']], function(){
 
@@ -53,8 +70,14 @@ Route::prefix('provider')->group(function () {
         
     });
 });
+
 Route::prefix('customer')->group(function () {
     Route::group(['middleware' => ['auth']], function(){
+
+        Route::prefix('orders')->group(function(){
+            Route::get('/index', 		[App\Http\Controllers\Customer\OrderController::class, 'index'])->name('customer.orders.index');
+            Route::get('/view/{id}', 	[App\Http\Controllers\Customer\OrderController::class, 'view'])->name('customer.orders.view');
+        });
 
     });
 });
@@ -75,6 +98,14 @@ Route::prefix('admin')->group(function () {
 	Route::group(['middleware' => ['auth']], function(){
 
 		Route::get('/dashboard', 			[App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
+
+        Route::prefix('orders')->group(function(){
+            Route::get('/index', 		[App\Http\Controllers\Admin\OrderController::class, 'index'])->name('admin.orders.index');
+            Route::get('/view/{id}', 	[App\Http\Controllers\Admin\OrderController::class, 'view'])->name('admin.orders.view');
+            Route::get('/edit/{id}', 	[App\Http\Controllers\Admin\OrderController::class, 'edit'])->name('admin.orders.edit');
+            Route::post('/update/{id}', [App\Http\Controllers\Admin\OrderController::class, 'update'])->name('admin.orders.update');
+            Route::get('/destroy/{id}', [App\Http\Controllers\Admin\OrderController::class, 'destroy'])->name('admin.orders.destroy');
+        });
 
         Route::prefix('slides')->group(function(){
             Route::get('/index', 			[App\Http\Controllers\Admin\SliderController::class, 'index'])->name('slides.index');

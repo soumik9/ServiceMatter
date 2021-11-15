@@ -43,14 +43,14 @@
 						@if (!empty($setting->website_logo_dark))
 							<img src="{{ $setting->website_logo_dark }}" alt="Logo">
 						@else
-							<img src="{{ asset('assets/admin/img/logo-def.png') }}" alt="Logo">
+							<img src="{{ asset('assets/admin/img/logo-bold.png') }}" alt="Logo">
 						@endif
 					</a>
 					<a href="{{ route('dashboard') }}" class="logo logo-small">
 						@if (!empty($setting->website_logo_small))
 							<img src="{{ $setting->website_logo_small }}" alt="Logo" width="30" height="30">
 						@else
-							<img src="{{ asset('assets/admin/img/logo-def.png') }}" alt="Logo" width="30" height="30">
+							<img src="{{ asset('assets/admin/img/favicon.png') }}" alt="Logo" width="30" height="30">
 						@endif
 					</a>
                 </div><!-- /Logo -->

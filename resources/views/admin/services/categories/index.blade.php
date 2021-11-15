@@ -99,6 +99,12 @@
                                                     </a> 
                                                 @endcan
 
+                                                @can('servicecategory-show')
+                                                    <a href="#" class="custom-edit-btn mr-1">
+                                                        <i class="far fa-edit"></i>Show
+                                                    </a> 
+                                                @endcan
+
                                                 @can('servicecategory-delete')
                                                     <a href="{{ route('servicecategories.destroy', $servicecategory->id) }}" class="custom-delete-btn delete-servicecategory">
                                                         <i class="far fa-trash-alt"></i>{{ __('default.table.delete') }}

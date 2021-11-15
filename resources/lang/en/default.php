@@ -20,6 +20,15 @@ return [
         'status'            => 'Status',
         'edit'              => 'Edit',
         'delete'            => 'Delete',
+
+        'service_name'        => 'Service Name',
+        'ordered_by'          => 'Order By',
+        'transaction_id'      => 'Transaction Id',
+        'transaction_status'  => 'Transaction Status',
+        'amount'              => 'Amount',
+        'view'                => 'View',
+        'order_status'        => 'Order Status',
+        'payment_status'      => 'Payment Status',
     ],
 
     'form'  => [
@@ -91,6 +100,9 @@ return [
             'bio'                   => 'Bio',
             'work_end_time'         => 'Work End Time',
             'per_hour_charge'       => 'Per hour charge',
+            'service_name'          => 'Service Name',
+            'order_status'          => 'Order Status',
+            'payment_status'        => 'Payment Status',
 
 
 
@@ -126,6 +138,9 @@ return [
                 ],
                 'service' => [
                     'required'  => 'The service field is required!',
+                ],
+                'order_status' => [
+                    'required'  => 'The order status field is required!',
                 ],
                 'price' => [
                     'required'  => 'The price field is required!',

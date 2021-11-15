@@ -44,4 +44,7 @@ return [
     'profile'               => 'Profile',
     'profiles'              => 'Profiles',
 
+    'order'                 => 'Order',
+    'orders'                => 'Orders',
+
 ];
