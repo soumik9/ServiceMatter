@@ -17,19 +17,18 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/', 					[App\Http\Controllers\Frontend\IndexController::class, 'index'])->name('home');
-Route::get('/service-categories', 	[App\Http\Controllers\Frontend\IndexController::class, 'serviceCategories'])->name('home.service.categories');
+Route::get('/', 					        [App\Http\Controllers\Frontend\IndexController::class, 'index'])->name('home');
+Route::get('/service-categories', 	        [App\Http\Controllers\Frontend\IndexController::class, 'serviceCategories'])->name('home.service.categories');
 Route::get('/service-categories/{slug}', 	[App\Http\Controllers\Frontend\IndexController::class, 'servicesByCategory'])->name('home.servicesbycategories');
 Route::get('/service-details/{slug}', 	    [App\Http\Controllers\Frontend\IndexController::class, 'servicesDetails'])->name('home.service.details');
 
-
-Route::get('/employees', 	    [App\Http\Controllers\Frontend\EmployeeController::class, 'employees'])->name('home.employees');
-
+Route::get('/employees', 	        [App\Http\Controllers\Frontend\EmployeeController::class, 'employees'])->name('home.employees');
+Route::get('/employee/hire/{id}', 	[App\Http\Controllers\Frontend\EmployeeController::class, 'hireEmployee'])->name('home.employee.hire');
+Route::post('/employee/hire/store', [App\Http\Controllers\Frontend\EmployeeController::class, 'hireStore'])->name('home.employee.hire.store');
 
 Route::get('/autocomplete',     [App\Http\Controllers\Frontend\IndexController::class, 'autocomplete'])->name('autocomplete');
 Route::post('/search',          [App\Http\Controllers\Frontend\IndexController::class, 'searchService'])->name('searchService');
-
-
+ 
 Route::get('/login', 			[App\Http\Controllers\Frontend\Auth\LoginController::class, 'login'])->name('login');
 Route::post('/login', 			[App\Http\Controllers\Frontend\Auth\LoginController::class, 'login_go'])->name('login_go');
 Route::get('/logout', 			[App\Http\Controllers\Frontend\Auth\LoginController::class, 'logout'])->name('logout');
@@ -75,8 +74,10 @@ Route::prefix('customer')->group(function () {
     Route::group(['middleware' => ['auth']], function(){
 
         Route::prefix('orders')->group(function(){
-            Route::get('/index', 		[App\Http\Controllers\Customer\OrderController::class, 'index'])->name('customer.orders.index');
-            Route::get('/view/{id}', 	[App\Http\Controllers\Customer\OrderController::class, 'view'])->name('customer.orders.view');
+            Route::get('/index', 		    [App\Http\Controllers\Customer\OrderController::class, 'index'])->name('customer.orders.index');
+            Route::get('/view/{id}', 	    [App\Http\Controllers\Customer\OrderController::class, 'view'])->name('customer.orders.view');
+            Route::get('/review/{id}', 	    [App\Http\Controllers\Customer\OrderController::class, 'review'])->name('customer.orders.review');
+            Route::post('/review/store', 	[App\Http\Controllers\Customer\OrderController::class, 'reviewStore'])->name('customer.orders.review.store');
         });
 
     });

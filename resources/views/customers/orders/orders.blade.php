@@ -55,7 +55,7 @@
                                     <th>{{ __('default.table.ordered_by') }}</th>
                                     <th>{{ __('default.table.amount') }}</th>
                                     <th>{{ __('default.table.transaction_status') }}</th>
-                                    <th>{{ __('default.table.status') }}</th>
+                                    <th>{{ __('default.table.order_status') }}</th>
                                     <th>{{ __('default.table.action') }}</th>
                                 </tr>
                             </thead>
@@ -78,11 +78,11 @@
 
                                         <td>
                                             @if ($order->order_status == 1)
-                                                <p class="badge badge-success">Order Aeccepted</p>
+                                                <p class="badge badge-success">Aeccepted</p>
                                             @elseif($order->order_status == 2)
-                                                <p class="badge badge-primary">Order Processing</p>
+                                                <p class="badge badge-primary">Processing</p>
                                             @else
-                                                <p class="badge badge-success">Order Completed</p>
+                                                <p class="badge badge-success">Completed</p>
                                             @endif
                                         </td>
 

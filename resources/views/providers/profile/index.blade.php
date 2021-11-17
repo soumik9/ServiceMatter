@@ -107,7 +107,7 @@
                             <p class="col-sm-10">{{ Auth::user()->mobile }}</p>
                         </div>
                         <div class="row">
-                            <p class="col-sm-2 text-muted text-sm-right mb-0">Service</p>
+                            <p class="col-sm-2 text-muted text-sm-right mb-0 mb-sm-3">Service</p>
                             <p class="col-sm-10 mb-0">
                                 @foreach ($servicecategories as $servicecategory)
                                     @if (Auth::user()->user_service_category_id == $servicecategory->id)

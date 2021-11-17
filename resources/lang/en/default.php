@@ -98,9 +98,11 @@ return [
 
             'work_start_time'       => 'Work Start Time',
             'bio'                   => 'Bio',
+            'content'               => 'Content',
             'work_end_time'         => 'Work End Time',
             'per_hour_charge'       => 'Per hour charge',
             'service_name'          => 'Service Name',
+            'service_rating'        => 'Service Rating',
             'order_status'          => 'Order Status',
             'payment_status'        => 'Payment Status',
 

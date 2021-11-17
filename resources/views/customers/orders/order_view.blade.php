@@ -73,7 +73,7 @@
                             </div>
                             @if ($order->order_status == 3)
                                 <div class="col-auto profile-btn">
-                                    <a href="#" class="btn btn-primary">
+                                    <a href="{{ route('customer.orders.review', $order->id) }}" class="btn btn-primary">
                                         Write a Review
                                     </a>
                                 </div>
