@@ -27,6 +27,7 @@ class OrderController extends Controller
             Permission::create(['name'=>'customer-menu']);
         }
 	}
+    
     public function index()
     {
         $id = Auth::user()->id;

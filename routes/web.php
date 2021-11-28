@@ -22,9 +22,9 @@ Route::get('/service-categories', 	        [App\Http\Controllers\Frontend\IndexC
 Route::get('/service-categories/{slug}', 	[App\Http\Controllers\Frontend\IndexController::class, 'servicesByCategory'])->name('home.servicesbycategories');
 Route::get('/service-details/{slug}', 	    [App\Http\Controllers\Frontend\IndexController::class, 'servicesDetails'])->name('home.service.details');
 
-Route::get('/employees', 	        [App\Http\Controllers\Frontend\EmployeeController::class, 'employees'])->name('home.employees');
-Route::get('/employee/hire/{id}', 	[App\Http\Controllers\Frontend\EmployeeController::class, 'hireEmployee'])->name('home.employee.hire');
-Route::post('/employee/hire/store', [App\Http\Controllers\Frontend\EmployeeController::class, 'hireStore'])->name('home.employee.hire.store');
+Route::get('/employees', 	           [App\Http\Controllers\Frontend\EmployeeController::class, 'employees'])->name('home.employees');
+Route::get('/employee/hire/{id}', 	   [App\Http\Controllers\Frontend\EmployeeController::class, 'hireEmployee'])->name('home.employee.hire');
+Route::post('/employee/hire/store',    [App\Http\Controllers\Frontend\EmployeeController::class, 'hire_confirm'])->name('home.hire.confirm');
 
 Route::get('/autocomplete',     [App\Http\Controllers\Frontend\IndexController::class, 'autocomplete'])->name('autocomplete');
 Route::post('/search',          [App\Http\Controllers\Frontend\IndexController::class, 'searchService'])->name('searchService');
@@ -80,8 +80,14 @@ Route::prefix('customer')->group(function () {
             Route::post('/review/store', 	[App\Http\Controllers\Customer\OrderController::class, 'reviewStore'])->name('customer.orders.review.store');
         });
 
+        Route::prefix('hires')->group(function(){
+            Route::get('/index', 		    [App\Http\Controllers\Customer\HireController::class, 'index'])->name('customer.hires.index');
+            Route::get('/view/{id}', 	    [App\Http\Controllers\Customer\HireController::class, 'view'])->name('customer.hires.view');
+           
+        });
+
     });
-});
+}); 
 
 Route::prefix('admin')->group(function () {
 

@@ -47,4 +47,7 @@ return [
     'order'                 => 'Order',
     'orders'                => 'Orders',
 
+    'hire'                  => 'Hire',
+    'hires'                 => 'Hires',
+
 ];

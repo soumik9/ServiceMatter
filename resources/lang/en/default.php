@@ -29,6 +29,11 @@ return [
         'view'                => 'View',
         'order_status'        => 'Order Status',
         'payment_status'      => 'Payment Status',
+        'hired_by'            => 'Hired By',
+        'order_no'            => 'Order ID',
+        'given_Service'       => 'Giver Service',
+        'employee_name'       => 'Employee Name',
+        'total_charge'        => 'Total Charge',
     ],
 
     'form'  => [
@@ -105,6 +110,11 @@ return [
             'service_rating'        => 'Service Rating',
             'order_status'          => 'Order Status',
             'payment_status'        => 'Payment Status',
+            'hired_by'              => 'Hired By',
+            'order_no'              => 'Order ID',
+            'given_Service'         => 'Giver Service',
+            'employee_name'         => 'Employee Name',
+            'total_charge'          => 'Total Charge',
 
 
 

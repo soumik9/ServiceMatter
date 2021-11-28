@@ -100,7 +100,11 @@ $setting = \App\Models\Setting::find(1);
                                                     <div class="link">
                                                         <div class="row">
                                                             <div class="col-md-6">
-                                                                <a href="{{ route('home.employee.hire', $employee->id) }}" class="btn btn-primary" style="width: 100%;">Hire</a>
+                                                                @auth
+                                                                    <a href="{{ route('home.employee.hire', $employee->id) }}" class="btn btn-primary" style="width: 100%;">Hire</a>
+                                                                @else
+                                                                    <p class="text-danger">Login to continue</p>
+                                                                @endauth
                                                             </div>
                                                         </div>
                                                     </div>

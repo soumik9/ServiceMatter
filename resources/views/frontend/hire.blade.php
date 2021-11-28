@@ -1,32 +1,10 @@
 @extends('frontend.layouts.master')
 @section('title')
-    Empolyees Hire ({{ $employee->name }})
+    Empolyees Hire
 @endsection
 
 @push('css')
     <style>
-        .card {
-            width: 70%;
-            margin-right: 20px;
-            background-color: #f5f6fa;
-            margin: 0 0px 30px 5px;
-        }
-
-        .e_card_img {
-            width: 100%;
-            height: 50%;
-            justify-content: center;
-        }
-
-        .card-body {
-            padding: 0 6px 5px 6px;
-        }
-
-        .card-text p {
-            margin: 0 !important;
-            padding: 0 0 10px 0 !important;
-        }
-
         .mt-3{
             margin-top: 3px !important;
         }
@@ -74,24 +52,69 @@
                     <div class="container">
                         <div class="row justify-content-center">
                             <div class="col-md-2"></div>
-                            <div class="col-md-8">
+                            <div class="col-md-8"> 
 
-                                <div class="profile1" style="min-height: 300px;">
+                                <div class="profile1" style="min-height: 500px;">
                                     <div class="thinborder-ontop">
             
-                                        <form method="POST" action="" class="registration-form"> 
-                                            @csrf   
+                                        <form method="POST" action="{{ route('home.hire.confirm') }}" class="registration-form"> 
+                                            @csrf() 
                                                                             
                                             <div class="form-group row">
                                                 <label for="name" class="col-md-4 col-form-label text-md-right">Name</label>
                                                 <div class="col-md-8">
-                                                    <input id="name" type="text" class="form-control" name="name" value="">
+                                                    <input type="text" class="form-control" readonly name="name" value="{{ Auth::user()->name }}">
                                                 </div>
                                             </div>
+
+                                            <div class="form-group row">
+                                                <label for="email" class="col-md-4 col-form-label text-md-right">Email</label>
+                                                <div class="col-md-8">
+                                                    <input type="email" class="form-control" readonly name="email" value="{{ Auth::user()->email }}">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label for="phone" class="col-md-4 col-form-label text-md-right">Phone</label>
+                                                <div class="col-md-8">
+                                                    <input type="text" class="form-control" readonly name="phone" value="{{ Auth::user()->mobile }}">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label for="employee_name" class="col-md-4 col-form-label text-md-right">Employee Name</label>
+                                                <div class="col-md-8">
+                                                    <input type="text" class="form-control" readonly name="employee_name" value="{{ $employee->name }}">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label for="working_hour" class="col-md-4 col-form-label text-md-right">Working hour</label>
+                                                <div class="col-md-8">
+                                                    <input type="text" class="form-control" name="working_hour">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label for="address" class="col-md-4 col-form-label text-md-right">Address</label>
+                                                <div class="col-md-8">
+                                                    <input type="text" class="form-control" name="address">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label for="per_hour" class="col-md-4 col-form-label text-md-right">Per hour Charge</label>
+                                                <div class="col-md-8">
+                                                    <input type="text" class="form-control" name="per_hour" readonly value="{{ $employee->per_hour_charge }}">
+                                                </div>
+                                            </div>
+
+                                            <input type="text" readonly hidden name="user_id" value="{{ Auth::user()->id }}">
+                                            <input type="text" readonly hidden name="employee_id" value="{{ $employee->id }}">
             
                                             <div class="form-group row mb-0 mt-3">
                                                 <div class="col-md-12">
-                                                    <button type="submit" class="btn btn-primary pull-right">Register</button>
+                                                    <button type="submit" class="btn btn-primary pull-right">Confirm</button>
                                                 </div>
                                             </div>
             

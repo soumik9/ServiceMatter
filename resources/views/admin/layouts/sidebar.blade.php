@@ -9,18 +9,22 @@
                 {{-- service provider profile --}}
                 @if(auth()->user()->can('customer-menu'))
                     @can('customer-menu')
-                    <li class="{{ (request()->is('customer/orders*')) ? 'active' : '' }}"> 
-                        <a href="{{ route('customer.orders.index') }}"><i data-feather="archive"></i> <span>{{ __('sidebar.orders') }}</span></a>
-                    </li>
+                        <li class="{{ (request()->is('customer/orders*')) ? 'active' : '' }}"> 
+                            <a href="{{ route('customer.orders.index') }}"><i data-feather="archive"></i> <span>{{ __('sidebar.orders') }}</span></a>
+                        </li>
+
+                        <li class="{{ (request()->is('customer/hires*')) ? 'active' : '' }}"> 
+                            <a href="{{ route('customer.hires.index') }}"><i data-feather="check-square"></i> <span>{{ __('sidebar.hires') }}</span></a>
+                        </li>
                     @endcan
                 @endif
 
                 {{-- service provider profile --}}
                 @if(auth()->user()->can('provider-menu'))
                     @can('provider-menu')
-                    <li class="{{ (request()->is('admin/profiles*')) ? 'active' : '' }}"> 
-                        <a href="{{ route('profiles.index') }}"><i data-feather="trello"></i> <span>{{ __('sidebar.profile') }}</span></a>
-                    </li>
+                        <li class="{{ (request()->is('admin/profiles*')) ? 'active' : '' }}"> 
+                            <a href="{{ route('profiles.index') }}"><i data-feather="trello"></i> <span>{{ __('sidebar.profile') }}</span></a>
+                        </li>
                     @endcan
                 @endif
 
