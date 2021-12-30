@@ -67,6 +67,11 @@ Route::prefix('provider')->group(function () {
             Route::get('/destroy/{id}', 	[App\Http\Controllers\Provider\ProfileController::class, 'destroy'])->name('profiles.destroy');
             Route::get('/status_update', 	[App\Http\Controllers\Provider\ProfileController::class, 'status_update'])->name('profiles.status_update');
         });
+
+        Route::prefix('hires')->group(function(){
+            Route::get('/index', 			[App\Http\Controllers\Provider\HireController::class, 'index'])->name('provider.hire.index');
+            Route::get('/view/{id}', 	    [App\Http\Controllers\Provider\HireController::class, 'view'])->name('provider.hires.view');
+        });
         
     });
 });

@@ -24,6 +24,8 @@ class DashboardController extends Controller
         $customer_total_hire  = Hire::where('user_id', Auth::user()->id)->get();
         $customer_total_order = Order::where('user_id', Auth::user()->id)->get();
 
-        return view('admin.dashboard', compact('customer_total_hire','customer_total_order','total_hire','total_order','total_service','roles_count'));
+        $provider_total_hire  = Hire::where('employee_id', Auth::user()->id)->get();
+
+        return view('admin.dashboard', compact('customer_total_hire','customer_total_order','total_hire','total_order','total_service','roles_count','provider_total_hire'));
     }
 }

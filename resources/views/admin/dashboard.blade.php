@@ -142,6 +142,22 @@
                         <!-- /Customer Order -->
                     @endif
 
+                    @if(Auth::user()->hasRole('Provider'))
+                        <!-- Customer Hire -->
+                        <div class="col-md-3">
+                            <div class="card-counter info">
+                            <i class="fa fa-users"></i>
+                            <span class="count-numbers">
+                                    {{ count($provider_total_hire) }}
+                            </span>
+                            <span class="count-name">
+                                Provider Hires
+                            </span>
+                            </div>
+                        </div>
+                        <!-- /Customer Hire -->
+                    @endif
+
                     @if(Auth::user()->hasRole('Admin'))
                         <!-- roles -->
                         @foreach ($roles_count as $role_info)

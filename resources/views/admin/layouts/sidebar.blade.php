@@ -22,8 +22,13 @@
                 {{-- service provider profile --}}
                 @if(auth()->user()->can('provider-menu'))
                     @can('provider-menu')
-                        <li class="{{ (request()->is('admin/profiles*')) ? 'active' : '' }}"> 
+                        <li class="{{ (request()->is('provider/profiles*')) ? 'active' : '' }}"> 
                             <a href="{{ route('profiles.index') }}"><i data-feather="trello"></i> <span>{{ __('sidebar.profile') }}</span></a>
+                        </li>
+                    @endcan
+                    @can('provider-menu')
+                        <li class="{{ (request()->is('provider/profiles*')) ? 'active' : '' }}"> 
+                            <a href="{{ route('provider.hire.index') }}"><i data-feather="check-square"></i> <span>{{ __('sidebar.hires') }}</span></a>
                         </li>
                     @endcan
                 @endif
