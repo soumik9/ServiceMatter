@@ -83,15 +83,14 @@
                             </div>
                         </div>
                         <div class="portfolioContainer" style="margin-top: -50px;">
-
                             @foreach ($featured_services as $featured_service)
                                 <div class="col-xs-6 col-sm-4 col-md-3 hsgrids" style="padding-right: 5px;padding-left: 5px;">
                                     <a class="g-list" href="{{ route('home.service.details', $featured_service->slug) }}">
                                     <div class="img-hover">
                                         @if (!empty($featured_service->thumbnail))
-                                            <img src="{{ $featured_service->thumbnail }}" alt="{{ $featured_service->name }}" class="img-responsive" style="height: 200px;">
+                                            <img src="{{ $featured_service->thumbnail }}" alt="{{ $featured_service->name }}" class="img-responsive" style="height: 200px; width:100%;">
                                         @else
-                                            <img src="{{ asset('assets/frontend/img/thumbnail.jpg') }}" alt="{{ $featured_service->name }}" class="img-responsive" style="height: 200px;">
+                                            <img src="{{ asset('assets/frontend/img/thumbnail.jpg') }}" alt="{{ $featured_service->name }}" class="img-responsive" style="height: 200px; width:100%;">
                                         @endif
                                     
                                     </div>
@@ -112,8 +111,8 @@
                                            
                                         <div class="price">{{ $setting->currency->symbol }} {{ $featured_service->price }}</div>
                                     </div>
-                                </a>
-                            </div>
+                                    </a>
+                                </div>
                             @endforeach
                         </div>
                     </div>
@@ -164,6 +163,60 @@
                 </div>
             </div>
         @endif
+
+        @if (count($employees) > 0)
+            <div>
+                <div class="container">
+                    <div class="row">
+                        <div class="titles">
+                            <h2><span>Employee</span>Services</h2>
+                            <i class="fa fa-plane"></i>
+                            <hr class="tall">
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolioContainer" style="margin-top: -50px;">
+                    @foreach ($employees as $employee)
+                        @if (!empty($employee->per_hour_charge) && !empty($employee->user_service_category_id))
+                            <div class="col-xs-6 col-sm-4 col-md-3 hsgrids" style="padding-right: 5px;padding-left: 5px;">
+                                <a class="g-list" href="{{ route('home.service.details', $employee->id) }}">
+                                <div class="img-hover">
+                                    @if (!empty($employee->image))
+                                        <img src="{{ $employee->image }}" alt="{{ $employee->name }}" class="img-responsive" style="height: 200px; width:100%;">
+                                    @else
+                                        <img src="{{ asset('assets/frontend/img/thumbnail.jpg') }}" alt="{{ $employee->name }}" class="img-responsive" style="height: 200px; width:100%;">
+                                    @endif
+                                
+                                </div>
+                                <div class="info-gallery">
+                                    <h3>{{ $employee->name }}</h3>
+                                    @foreach ($service_categories as $service_category)
+                                        @if ($service_category->id == $employee->user_service_category_id)
+                                            <h3>Service: {{ $service_category->name }}</h3>
+                                        @endif     
+                                    @endforeach
+                                
+                                    <hr class="separator">
+
+                                        @auth
+                                            <div class="content-btn">
+                                                <a href="{{route('home.employee.hire', $employee->id) }}" class="btn btn-primary">Hire Now</a>
+                                            </div>
+                                        @endauth
+                                    
+                                        @guest
+                                            <p style="color: red;">Login to continue</p>
+                                        @endguest
+                                    
+                                    <div class="price">{{ $setting->currency->symbol }} {{ $employee->per_hour_charge }}</div>
+                                </div>
+                                </a>
+                            </div>
+                        @endif
+                    @endforeach
+                </div>
+            </div>
+        @endif
      
         @if (count($appliance_services) > 0)
             <div>
@@ -176,28 +229,35 @@
                         </div>
                     </div>
                 </div>
-                <div id="boxes-carousel">
+                <div class="portfolioContainer" style="margin-top: -50px;">
                     @foreach ($appliance_services as $appliance_service)
-                        <div class="col-md-3" style="margin-top: 15px;">
+                        <div class="col-xs-6 col-sm-4 col-md-3 hsgrids" style="padding-right: 5px;padding-left: 5px;">
                             <a class="g-list" href="{{ route('home.service.details', $appliance_service->slug) }}">
-                                <div class="img-hover">
-                                    @if (!empty($appliance_service->thumbnail))
-                                        <img src="{{ $appliance_service->thumbnail }}" alt="{{ $appliance_service->name }}" class="img-responsive">
-                                    @else
-                                        <img src="{{ asset('assets/frontend/img/thumbnail.jpg') }}" alt="{{ $appliance_service->name }}" class="img-responsive">
-                                    @endif
-                                
-                                </div>
-
-                                <div class="info-gallery">
-                                    <h3>{{ $appliance_service->name }}</h3>
-                                    <hr class="separator">
-                                    <p>{{ $appliance_service->tagline }}</p>
-                                    <div class="content-btn">
-                                        <a href="{{ route('home.service.details', $appliance_service->slug) }}"class="btn btn-primary">Book Now</a>
-                                    </div>
-                                    <div class="price">{{ $setting->currency->symbol }} {{ $appliance_service->price }}</div>
-                                </div>
+                            <div class="img-hover">
+                                @if (!empty($appliance_service->thumbnail))
+                                    <img src="{{ $appliance_service->thumbnail }}" alt="{{ $appliance_service->name }}" class="img-responsive" style="height: 200px; width:100%;">
+                                @else
+                                    <img src="{{ asset('assets/frontend/img/thumbnail.jpg') }}" alt="{{ $appliance_service->name }}" class="img-responsive" style="height: 200px; width:100%;">
+                                @endif
+                            
+                            </div>
+                            <div class="info-gallery">
+                                <h3>{{ $appliance_service->name }}</h3>
+                                <hr class="separator">
+                                <p>{{ $appliance_service->tagline }}</p>
+                               
+                                    {{-- @auth --}}
+                                        <div class="content-btn">
+                                            <a href="{{ route('home.service.details', $appliance_service->slug) }}" class="btn btn-primary">Book Now</a>
+                                        </div>
+                                    {{-- @endauth
+                                  
+                                    @guest
+                                        <p style="color: red;">Login to order</p>
+                                    @endguest --}}
+                                   
+                                <div class="price">{{ $setting->currency->symbol }} {{ $appliance_service->price }}</div>
+                            </div>
                             </a>
                         </div>
                     @endforeach

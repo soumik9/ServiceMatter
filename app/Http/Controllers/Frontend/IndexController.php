@@ -7,6 +7,7 @@ use App\Models\Review;
 use App\Models\Service;
 use App\Models\ServiceCategory;
 use App\Models\Slider;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -15,15 +16,18 @@ class IndexController extends Controller
     public function index()
     {
         $scategories = ServiceCategory::where('status', 1)->inRandomOrder()->take(18)->get();
-        $featured_services = Service::where('featured', 1)->inRandomOrder()->take(8)->get();
+        $featured_services = Service::where('featured', 1)->inRandomOrder()->take(4)->get();
         $featured_categories = ServiceCategory::where('featured', 1)->where('status', 1)->take(8)->get();
 
         $sid = ServiceCategory::whereIn('slug', ['ac','tv','refrigerator','geyser','water-purifier'])->get()->pluck('id');
-        $appliance_services = Service::whereIn('service_category_id', $sid)->inRandomOrder()->take(8)->get();
+        $appliance_services = Service::whereIn('service_category_id', $sid)->inRandomOrder()->take(4)->get();
+
+        $service_categories = ServiceCategory::where('status', 1)->get();
+        $employees = User::where('utype', 'SVP')->where('status', 1)->take(4)->get();
 
         $slides = Slider::where('status', 1)->get();
 
-        return view('frontend.index', compact('scategories', 'featured_services', 'featured_categories', 'sid', 'appliance_services', 'slides'));
+        return view('frontend.index', compact('scategories', 'featured_services', 'featured_categories', 'sid', 'appliance_services', 'slides', 'employees', 'service_categories'));
     }
 
     public function serviceCategories()

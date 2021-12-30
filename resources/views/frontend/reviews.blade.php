@@ -82,40 +82,46 @@
                     <div class="container">
                         <div class="row justify-content-center">
 
-                            @foreach ($reviews as $review)
-                            <div class="col-md-6">
-                                <div class="reviews">
-                                    <div class="row blockquote review-item">
-                                      <div class="col-md-3 text-center">
-                                        <img class="rounded-circle reviewer" src="http://standaloneinstaller.com/upload/avatar.png">
-                                        <div class="caption">
-                                          <small>by <a href="#joe">{{ $review->name }}</a></small>
+                            @if (count($reviews) > 0)
+                                @foreach ($reviews as $review)
+                                <div class="col-md-6">
+                                    <div class="reviews">
+                                        <div class="row blockquote review-item">
+                                        <div class="col-md-3 text-center">
+                                            <img class="rounded-circle reviewer" src="http://standaloneinstaller.com/upload/avatar.png">
+                                            <div class="caption">
+                                            <small>by <a href="#joe">{{ $review->name }}</a></small>
+                                            </div>
+                                    
                                         </div>
-                                  
-                                      </div>
-                                      <div class="col-md-9">
-                                        <h4>{{ $review->service_name }}</h4>
-                                        <div class="rate">
-                                            @if ($review->rating == 1)
-                                                <i class="fa fa-star"></i>
-                                            @elseif($review->rating == 2)
-                                                <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-                                            @elseif($review->rating == 3)
-                                                <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-                                            @elseif($review->rating == 4)
-                                                <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-                                            @else
-                                                <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-                                            @endif
-                                        </div>
-                                        <p class="review-text">{{ $review->content }}</p>
-                                  
-                                        <small class="review-date">{{ $review->created_at }}</small>
-                                      </div>                          
-                                    </div>  
-                                  </div>
-                            </div>
-                            @endforeach
+                                        <div class="col-md-9">
+                                            <h4>{{ $review->service_name }}</h4>
+                                            <div class="rate">
+                                                @if ($review->rating == 1)
+                                                    <i class="fa fa-star"></i>
+                                                @elseif($review->rating == 2)
+                                                    <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                                @elseif($review->rating == 3)
+                                                    <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                                @elseif($review->rating == 4)
+                                                    <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                                @else
+                                                    <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                                @endif
+                                            </div>
+                                            <p class="review-text">{{ $review->content }}</p>
+                                    
+                                            <small class="review-date">{{ $review->created_at }}</small>
+                                        </div>                          
+                                        </div>  
+                                    </div>
+                                </div>
+                                @endforeach
+                            @else
+                                <center style="margin-bottom: 10px;">
+                                    <h4 class="text-danger">No review yet</h4>
+                                </center>
+                            @endif
                        
                         </div> <!-- row end -->
                     </div>
