@@ -86,37 +86,7 @@
                         </ul>
                     </li>
                 @endif
-                {{-- CMS end --}}
-
-                {{-- CMS --}}
-                @if(auth()->user()->can('cms-list') || auth()->user()->can('cmscategory-list'))
-                    <li class="submenu">
-                        <a class="#" href="javascript:void(0)" aria-expanded="false">
-                            <i data-feather="layout"></i><span class="hide-menu">{{ __('sidebar.cms') }}</span><span class="menu-arrow"></span>
-                        </a>
-                        
-                        <ul style="display: none;">
-
-                            @can('cmscategory-list')
-                                <li>
-                                    <a href="{{ route('cmscategories.index') }}" title="{{ __('sidebar.categories') }}" class="sidebar-link {{ request()->is('admin/cmscategories*') ? 'active' : '' }}">
-                                        <span class="hide-menu">{{ __('sidebar.categories') }}</span>
-                                    </a>
-                                </li>
-                            @endcan
-
-                            @can('cms-list')
-                                <li>
-                                    <a href="{{ route('cms.index') }}" title="{{ __('sidebar.pages') }}" class="sidebar-link {{ request()->is('admin/cmspages*') ? 'active' : '' }}">
-                                        <span class="hide-menu">{{ __('sidebar.pages') }}</span>
-                                    </a>
-                                </li>
-                            @endcan
-                            
-                        </ul>
-                    </li>
-                @endif
-                {{-- CMS end --}}
+                {{-- Services end --}}
 
                 {{-- users --}}
                 @if(auth()->user()->can('user-list') || auth()->user()->can('role-list') || auth()->user()->can('permission-list') || auth()->user()->can('user-activity'))

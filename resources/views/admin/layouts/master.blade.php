@@ -84,7 +84,7 @@
 					<!-- /Live View -->
 
 					<!-- Notifications -->
-					<li class="nav-item dropdown noti-dropdown">
+					{{-- <li class="nav-item dropdown noti-dropdown">
 						<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
 							<i data-feather="bell"></i> <span class="badge badge-pill">3</span>
 						</a>
@@ -114,7 +114,7 @@
 								<a href="#">View all Notifications</a>
 							</div>
 						</div>
-					</li>
+					</li> --}}
 					<!-- /Notifications -->
 					
 					<!-- User Menu -->

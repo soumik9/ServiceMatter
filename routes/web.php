@@ -23,9 +23,11 @@ Route::get('/service-categories/{slug}', 	[App\Http\Controllers\Frontend\IndexCo
 Route::get('/service-details/{slug}', 	    [App\Http\Controllers\Frontend\IndexController::class, 'servicesDetails'])->name('home.service.details');
 
 Route::get('/categories-for-employeess', 	[App\Http\Controllers\Frontend\EmployeeController::class, 'serviceCategoriesEmployee'])->name('home.service.categories.employee');
-Route::get('/employees/{slug}', 	           [App\Http\Controllers\Frontend\EmployeeController::class, 'employees'])->name('home.employeeServicesbycategories');
-Route::get('/employee/hire/{id}', 	   [App\Http\Controllers\Frontend\EmployeeController::class, 'hireEmployee'])->name('home.employee.hire');
-Route::post('/employee/hire/store',    [App\Http\Controllers\Frontend\EmployeeController::class, 'hire_confirm'])->name('home.hire.confirm');
+Route::get('/employees/{slug}', 	        [App\Http\Controllers\Frontend\EmployeeController::class, 'employees'])->name('home.employeeServicesbycategories');
+Route::get('/employee/hire/{id}', 	        [App\Http\Controllers\Frontend\EmployeeController::class, 'hireEmployee'])->name('home.employee.hire');
+Route::post('/employee/hire/store',         [App\Http\Controllers\Frontend\EmployeeController::class, 'hire_confirm'])->name('home.hire.confirm');
+
+Route::get('/reviews', 					    [App\Http\Controllers\Frontend\IndexController::class, 'reviews'])->name('home.reviews');
 
 Route::get('/autocomplete',     [App\Http\Controllers\Frontend\IndexController::class, 'autocomplete'])->name('autocomplete');
 Route::post('/search',          [App\Http\Controllers\Frontend\IndexController::class, 'searchService'])->name('searchService');
@@ -157,26 +159,6 @@ Route::prefix('admin')->group(function () {
             Route::post('/update/{id}', 	[App\Http\Controllers\Admin\ServiceController::class, 'update'])->name('services.update');
             Route::get('/destroy/{id}', 	[App\Http\Controllers\Admin\ServiceController::class, 'destroy'])->name('services.destroy');
             Route::get('/status_update', 	[App\Http\Controllers\Admin\ServiceController::class, 'status_update'])->name('services.status_update');
-        });
-
-        Route::prefix('cmscategories')->group(function(){
-            Route::get('/index', 			[App\Http\Controllers\Admin\CmsCategoryController::class, 'index'])->name('cmscategories.index');
-            Route::get('/create', 			[App\Http\Controllers\Admin\CmsCategoryController::class, 'create'])->name('cmscategories.create');
-            Route::post('/store', 			[App\Http\Controllers\Admin\CmsCategoryController::class, 'store'])->name('cmscategories.store');
-            Route::get('/edit/{id}', 		[App\Http\Controllers\Admin\CmsCategoryController::class, 'edit'])->name('cmscategories.edit');
-            Route::post('/update/{id}', 	[App\Http\Controllers\Admin\CmsCategoryController::class, 'update'])->name('cmscategories.update');
-            Route::get('/destroy/{id}', 	[App\Http\Controllers\Admin\CmsCategoryController::class, 'destroy'])->name('cmscategories.destroy');
-            Route::get('/status_update', 	[App\Http\Controllers\Admin\CmsCategoryController::class, 'status_update'])->name('cmscategories.status_update');
-        });
-
-        Route::prefix('cmspages')->group(function(){
-            Route::get('/index', 			[App\Http\Controllers\Admin\CmsController::class, 'index'])->name('cms.index');
-            Route::get('/create', 			[App\Http\Controllers\Admin\CmsController::class, 'create'])->name('cms.create');
-            Route::post('/store', 			[App\Http\Controllers\Admin\CmsController::class, 'store'])->name('cms.store');
-            Route::get('/edit/{id}', 		[App\Http\Controllers\Admin\CmsController::class, 'edit'])->name('cms.edit');
-            Route::post('/update/{id}', 	[App\Http\Controllers\Admin\CmsController::class, 'update'])->name('cms.update');
-            Route::get('/destroy/{id}', 	[App\Http\Controllers\Admin\CmsController::class, 'destroy'])->name('cms.destroy');
-            Route::get('/status_update', 	[App\Http\Controllers\Admin\CmsController::class, 'status_update'])->name('cms.status_update');
         });
 
         Route::prefix('users')->group(function(){

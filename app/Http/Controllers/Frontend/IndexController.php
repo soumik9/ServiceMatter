@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Review;
 use App\Models\Service;
 use App\Models\ServiceCategory;
 use App\Models\Slider;
@@ -62,5 +63,11 @@ class IndexController extends Controller
         {
             return back();
         }
+    }
+
+    public function reviews()
+    {
+        $reviews = Review::all();
+        return view('frontend.reviews', compact('reviews'));
     }
 }
