@@ -34,11 +34,11 @@
             	<div class="container">
                 	<div class="loginbox">
                     	<div class="login-left">
-							@if (!empty($setting->website_logo_dark))
-								<img class="img-fluid" src="{{ $setting->website_logo_dark }}" alt="Logo">
+							@if (!empty($setting->website_title))
+								<h5 style="color: white;">{{ $setting->website_title }} </h5>  
 							@else 
-								<img class="img-fluid" src="{{ asset('assets/admin/img/logo-def.png') }}" alt="Logo">
-							@endif     
+								<p style="color: white;"> S</span>  ERVICE <span style="font-style: italic;">M</span> ATTER</p>  
+							@endif         
                         </div>
                         <div class="login-right">
 							<div class="login-right-wrap">
