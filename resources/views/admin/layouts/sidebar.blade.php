@@ -31,8 +31,15 @@
                 
                 {{-- admin order --}}
                 @if(auth()->user()->can('order-list') || auth()->user()->can('order-view') || auth()->user()->can('order-edit'))
-                    <li class="{{ (request()->is('admin/orders')) ? 'active' : '' }}"> 
-                        <a href="{{ route('admin.orders.index') }}"><i data-feather="archive"></i> <span>{{ __('sidebar.orders') }}</span></a>
+                    <li class="{{ (request()->is('admin/orders*')) ? 'active' : '' }}"> 
+                        <a href="{{ route('admin.orders.index') }}"><i data-feather="check-square"></i> <span>{{ __('sidebar.orders') }}</span></a>
+                    </li>
+                @endif
+
+                {{-- admin hire --}}
+                @if(auth()->user()->can('hire-list') || auth()->user()->can('hire-view') || auth()->user()->can('hire-edit'))
+                    <li class="{{ (request()->is('admin/hires*')) ? 'active' : '' }}"> 
+                        <a href="{{ route('admin.hires.index') }}"><i data-feather="archive"></i> <span>{{ __('sidebar.hires') }}</span></a>
                     </li>
                 @endif
 

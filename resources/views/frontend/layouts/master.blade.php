@@ -100,7 +100,7 @@
                     <li class="title">
                         <a href="/"><span style="font-style: italic;">S</span>  ERVICE <span style="font-style: italic;">M</span> ATTER </a>
                     </li>
-                    <li> <a href="{{ route('home.employees') }}">Employees</a></li>
+                    <li> <a href="{{ route('home.service.categories.employee') }}">Employees</a></li>
                     <li> <a href="{{ route('home.service.categories') }}">Service Categories</a></li>
                     
 

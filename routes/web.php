@@ -22,7 +22,8 @@ Route::get('/service-categories', 	        [App\Http\Controllers\Frontend\IndexC
 Route::get('/service-categories/{slug}', 	[App\Http\Controllers\Frontend\IndexController::class, 'servicesByCategory'])->name('home.servicesbycategories');
 Route::get('/service-details/{slug}', 	    [App\Http\Controllers\Frontend\IndexController::class, 'servicesDetails'])->name('home.service.details');
 
-Route::get('/employees', 	           [App\Http\Controllers\Frontend\EmployeeController::class, 'employees'])->name('home.employees');
+Route::get('/categories-for-employeess', 	[App\Http\Controllers\Frontend\EmployeeController::class, 'serviceCategoriesEmployee'])->name('home.service.categories.employee');
+Route::get('/employees/{slug}', 	           [App\Http\Controllers\Frontend\EmployeeController::class, 'employees'])->name('home.employeeServicesbycategories');
 Route::get('/employee/hire/{id}', 	   [App\Http\Controllers\Frontend\EmployeeController::class, 'hireEmployee'])->name('home.employee.hire');
 Route::post('/employee/hire/store',    [App\Http\Controllers\Frontend\EmployeeController::class, 'hire_confirm'])->name('home.hire.confirm');
 
@@ -112,6 +113,15 @@ Route::prefix('admin')->group(function () {
             Route::get('/edit/{id}', 	[App\Http\Controllers\Admin\OrderController::class, 'edit'])->name('admin.orders.edit');
             Route::post('/update/{id}', [App\Http\Controllers\Admin\OrderController::class, 'update'])->name('admin.orders.update');
             Route::get('/destroy/{id}', [App\Http\Controllers\Admin\OrderController::class, 'destroy'])->name('admin.orders.destroy');
+        });
+
+        
+        Route::prefix('hires')->group(function(){
+            Route::get('/index', 		[App\Http\Controllers\Admin\HireController::class, 'index'])->name('admin.hires.index');
+            Route::get('/view/{id}', 	[App\Http\Controllers\Admin\HireController::class, 'view'])->name('admin.hires.view');
+            Route::get('/edit/{id}', 	[App\Http\Controllers\Admin\HireController::class, 'edit'])->name('admin.hires.edit');
+            Route::post('/update/{id}', [App\Http\Controllers\Admin\HireController::class, 'update'])->name('admin.hires.update');
+            Route::get('/destroy/{id}', [App\Http\Controllers\Admin\HireController::class, 'destroy'])->name('admin.hires.destroy');
         });
 
         Route::prefix('slides')->group(function(){

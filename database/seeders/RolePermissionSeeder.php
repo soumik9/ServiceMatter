@@ -72,6 +72,11 @@ class RolePermissionSeeder extends Seeder
             'order-edit',
             'order-delete',
 
+            'hire-list',
+            'hire-view',
+            'hire-edit',
+            'hire-delete',
+
             'file-manager',
             'websetting-edit',
             'user-activity',

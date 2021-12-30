@@ -25,10 +25,10 @@
                                     <a href="{{ route('dashboard') }}">Dashboard</a>
                                 </li>
                                 <li class="breadcrumb-item active-breadcrumb">
-                                    <a href="{{ route('customer.hires.index') }}">{{ __('hire.index.title') }}</a>
+                                    <a href="{{ route('admin.hires.index') }}">{{ __('hire.index.title') }}</a>
                                 </li>
                                 <li class="breadcrumb-item active-breadcrumb">
-                                    <a href="{{ route('customer.hires.view', $hire->id) }}">{{ $hire->transaction_id }}</a>
+                                    <a href="{{ route('admin.hires.view', $hire->id) }}">{{ $hire->transaction_id }}</a>
                                 </li>
                             </ul>
                         </div>
@@ -65,21 +65,20 @@
                                 <h4 class="user-name mb-0">{{ $hire->name }}</h4>
                                 <h6 class="text-muted">{{ $hire->email }}</h6>
                                 <h6 class="text-muted">{{ $hire->phone }}</h6>
-                                @if (!empty( $hire->transaction_id))
-                                    <div class="user-Location">
-                                        <i class="fas fa-list"></i>
-                                        {{ $hire->transaction_id }}
-                                    </div>
-                                @endif
+                                <div class="user-Location">
+                                    <i class="fas fa-list"></i>
+                                    {{ $hire->transaction_id }}
+                                </div>
                                 <div class="about-text">{!! $hire->employee->bio !!}</div>
                             </div>
-                            @if ($hire->status == 3)
+                            {{-- @if ($hire->hire_status == 3)
                                 <div class="col-auto profile-btn">
-                                    <a href="#" class="btn btn-primary">
+                                    <a href="{{ route('customer.hires.review', $hire->id) }}" class="btn btn-primary">
                                         Write a Review
                                     </a>
                                 </div>
-                            @endif 
+                            @endif --}}
+ 
                         </div>
                     </div>
 
@@ -87,22 +86,26 @@
                     <!-- Edit Details Modal -->
                     <div class="mt-4 mb-4">
                         <h5 class="card-title">
-                            <span>hire Details</span> 
+                            <span>Hire Details</span> 
                         </h5>
 
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="row">
-                                    <p class="col-sm-4 text-muted text-sm-right mb-0 mb-sm-3">Service name:</p>
-                                    <p class="col-sm-8">{{ $hire->name }}</p>
+                                    <p class="col-sm-4 text-muted text-sm-right mb-0 mb-sm-3">Employee name:</p>
+                                    <p class="col-sm-8">{{ $hire->employee->name }}</p>
                                 </div>
                                 <div class="row">
-                                    <p class="col-sm-4 text-muted text-sm-right mb-0 mb-sm-3">Address:</p>
+                                    <p class="col-sm-4 text-muted text-sm-right mb-0 mb-sm-3">Service To:</p>
                                     <p class="col-sm-8">{{ $hire->address }}</p>
                                 </div>
                                 <div class="row">
+                                    <p class="col-sm-4 text-muted text-sm-right mb-0 mb-sm-3">Transaction by:</p>
+                                    <p class="col-sm-8">{{ $hire->transaction_id }}</p>
+                                </div>
+                                <div class="row">
                                     <p class="col-sm-4 text-muted text-sm-right mb-0 mb-sm-3">Transaction id:</p>
-                                    <p class="col-sm-8"> @if (!empty( $hire->transaction_id)) {{ $hire->transaction_id }} @else none @endif</p>
+                                    <p class="col-sm-8">{{ $hire->transaction_id }}</p>
                                 </div>
                                 <div class="row">
                                     <p class="col-sm-4 text-muted text-sm-right mb-0 mb-sm-3">Date:</p>

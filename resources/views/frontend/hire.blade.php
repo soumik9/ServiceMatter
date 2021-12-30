@@ -109,6 +109,23 @@
                                                 </div>
                                             </div>
 
+                                            <div class="form-group row">
+                                                <label for="per_hour" class="col-md-4 col-form-label text-md-right">Transaction By</label>
+                                                <div class="col-md-8">
+                                                    <select name="transaction_by" id="transaction_by" class="form-control">
+                                                        <option value="cod">Cash on Deliver</option>
+                                                        <option value="bkash">Bkash</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label for="per_hour" class="col-md-4 col-form-label text-md-right">Transaction ID (If payment by bkash)</label>
+                                                <div class="col-md-8">
+                                                    <input type="text" class="form-control" name="transaction_id">
+                                                </div>
+                                            </div>
+
                                             <input type="text" readonly hidden name="user_id" value="{{ Auth::user()->id }}">
                                             <input type="text" readonly hidden name="employee_id" value="{{ $employee->id }}">
             
