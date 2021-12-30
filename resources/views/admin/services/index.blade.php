@@ -77,7 +77,13 @@
                             
                                         <td>{{ $service->name }}</td>
                                         <td>{{ $service->price }} {{ $setting->currency->symbol }}</td>
-                                        <td>{{ $service->service_category->name }}</td>
+                                        <td>
+                                            @if(!empty($service->service_category->name))
+                                                {{ $service->service_category->name }}
+                                            @else
+                                                Category not selected
+                                            @endif
+                                        </td>
 
                                         <td>
                                             @if($service->featured == 1)

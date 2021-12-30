@@ -29,11 +29,6 @@ class Service extends Model
         return $this->belongsTo(ServiceCategory::class,'service_category_id');
     }
 
-    // public function cms()
-    // {
-    //     return $this->hasMany(Cms::class);
-    // }
-
     public function customer_service()
     {
         return $this->hasMany(Order::class);

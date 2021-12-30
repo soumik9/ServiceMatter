@@ -37,16 +37,6 @@ class RolePermissionSeeder extends Seeder
             'permission-edit',
             'permission-delete',
 
-            'cmscategory-list',
-            'cmscategory-create',
-            'cmscategory-edit',
-            'cmscategory-delete',
-
-            'cms-list',
-            'cms-create',
-            'cms-edit',
-            'cms-delete',
-
             'currency-list',
             'currency-create',
             'currency-edit',

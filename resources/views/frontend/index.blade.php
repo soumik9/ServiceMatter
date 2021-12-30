@@ -89,9 +89,9 @@
                                     <a class="g-list" href="{{ route('home.service.details', $featured_service->slug) }}">
                                     <div class="img-hover">
                                         @if (!empty($featured_service->thumbnail))
-                                            <img src="{{ $featured_service->thumbnail }}" alt="{{ $featured_service->name }}" class="img-responsive">
+                                            <img src="{{ $featured_service->thumbnail }}" alt="{{ $featured_service->name }}" class="img-responsive" style="height: 200px;">
                                         @else
-                                            <img src="{{ asset('assets/frontend/img/thumbnail.jpg') }}" alt="{{ $featured_service->name }}" class="img-responsive">
+                                            <img src="{{ asset('assets/frontend/img/thumbnail.jpg') }}" alt="{{ $featured_service->name }}" class="img-responsive" style="height: 200px;">
                                         @endif
                                     
                                     </div>
@@ -178,7 +178,7 @@
                 </div>
                 <div id="boxes-carousel">
                     @foreach ($appliance_services as $appliance_service)
-                        <div>
+                        <div class="col-md-3" style="margin-top: 15px;">
                             <a class="g-list" href="{{ route('home.service.details', $appliance_service->slug) }}">
                                 <div class="img-hover">
                                     @if (!empty($appliance_service->thumbnail))
