@@ -27,7 +27,7 @@
                         </li>
                     @endcan
                     @can('provider-menu')
-                        <li class="{{ (request()->is('provider/profiles*')) ? 'active' : '' }}"> 
+                        <li class="{{ (request()->is('provider/hires*')) ? 'active' : '' }}"> 
                             <a href="{{ route('provider.hire.index') }}"><i data-feather="check-square"></i> <span>{{ __('sidebar.hires') }}</span></a>
                         </li>
                     @endcan

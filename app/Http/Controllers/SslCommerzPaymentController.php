@@ -10,7 +10,7 @@ use App\Models\Service;
 use Illuminate\Support\Carbon;
 
 class SslCommerzPaymentController extends Controller
-{
+{ 
 
     public function exampleEasyCheckout()
     {
@@ -22,7 +22,6 @@ class SslCommerzPaymentController extends Controller
     public function exampleHostedCheckout($slug)
     {
         $service = Service::where('slug', $slug)->first();
-        //dd($service);
         return view('frontend.payment', compact('service'));
 
         //return view('exampleHosted');

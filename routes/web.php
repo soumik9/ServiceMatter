@@ -39,7 +39,7 @@ Route::get('/logout', 			[App\Http\Controllers\Frontend\Auth\LoginController::cl
 Route::get('/registration', 	[App\Http\Controllers\Frontend\Auth\RegisterController::class, 'register'])->name('register');
 Route::post('/registration', 	[App\Http\Controllers\Frontend\Auth\RegisterController::class, 'register_go'])->name('register_go');
 
-
+ 
 // SSLCOMMERZ Start
 //Route::get('/payment/{slug}',      [App\Http\Controllers\SslCommerzPaymentController::class, 'exampleEasyCheckout'])->name('payment');
 Route::get('/example1',            [App\Http\Controllers\SslCommerzPaymentController::class, 'exampleEasyCheckout']);

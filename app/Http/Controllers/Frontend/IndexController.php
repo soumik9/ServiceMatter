@@ -13,7 +13,7 @@ use Illuminate\Support\Str;
 
 class IndexController extends Controller
 {
-    public function index()
+    public function index() 
     {
         $scategories = ServiceCategory::where('status', 1)->inRandomOrder()->take(18)->get();
         $featured_services = Service::where('featured', 1)->inRandomOrder()->take(4)->get();
@@ -23,11 +23,26 @@ class IndexController extends Controller
         $appliance_services = Service::whereIn('service_category_id', $sid)->inRandomOrder()->take(4)->get();
 
         $service_categories = ServiceCategory::where('status', 1)->get();
-        $employees = User::where('utype', 'SVP')->where('status', 1)->take(4)->get();
+
+        $employees_get = User::where('utype', 'SVP')->where('status', 1)->take(4)->get();
+
+        foreach($employees_get as $employee_in)
+        {
+            if(!empty($employee_in->per_hour_charge) && !empty($employee_in->user_service_category_id))
+            {
+                $employees = User::where('utype', 'SVP')->where('status', 1)->take(4)->get();
+            }
+        }
 
         $slides = Slider::where('status', 1)->get();
 
-        return view('frontend.index', compact('scategories', 'featured_services', 'featured_categories', 'sid', 'appliance_services', 'slides', 'employees', 'service_categories'));
+        if(!empty($employee_in->per_hour_charge) && !empty($employee_in->user_service_category_id)){
+            return view('frontend.index', compact('scategories', 'featured_services', 'featured_categories', 'sid', 'appliance_services', 'slides', 'employees', 'service_categories'));
+        }else{
+            return view('frontend.index', compact('scategories', 'featured_services', 'featured_categories', 'sid', 'appliance_services', 'slides', 'service_categories'));
+        }
+
+       // return view('frontend.index', compact('scategories', 'featured_services', 'featured_categories', 'sid', 'appliance_services', 'slides', 'employees', 'service_categories'));
     }
 
     public function serviceCategories()

@@ -81,7 +81,7 @@
                                 <i class="fa fa-plane"></i>
                                 <hr class="tall">
                             </div>
-                        </div>
+                        </div> 
                         <div class="portfolioContainer" style="margin-top: -50px;">
                             @foreach ($featured_services as $featured_service)
                                 <div class="col-xs-6 col-sm-4 col-md-3 hsgrids" style="padding-right: 5px;padding-left: 5px;">
@@ -164,59 +164,62 @@
             </div>
         @endif
 
-        @if (count($employees) > 0)
-            <div>
-                <div class="container">
-                    <div class="row">
-                        <div class="titles">
-                            <h2><span>Employee</span>Services</h2>
-                            <i class="fa fa-plane"></i>
-                            <hr class="tall">
+        @if (!empty($employees))
+            @if (count($employees) > 0)
+                <div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="titles">
+                                <h2><span>Employee</span>Services</h2>
+                                <i class="fa fa-plane"></i>
+                                <hr class="tall">
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="portfolioContainer" style="margin-top: -50px;">
-                    @foreach ($employees as $employee)
-                        @if (!empty($employee->per_hour_charge) && !empty($employee->user_service_category_id))
-                            <div class="col-xs-6 col-sm-4 col-md-3 hsgrids" style="padding-right: 5px;padding-left: 5px;">
-                                <a class="g-list" href="{{ route('home.service.details', $employee->id) }}">
-                                <div class="img-hover">
-                                    @if (!empty($employee->image))
-                                        <img src="{{ $employee->image }}" alt="{{ $employee->name }}" class="img-responsive" style="height: 200px; width:100%;">
-                                    @else
-                                        <img src="{{ asset('assets/frontend/img/thumbnail.jpg') }}" alt="{{ $employee->name }}" class="img-responsive" style="height: 200px; width:100%;">
-                                    @endif
-                                
-                                </div>
-                                <div class="info-gallery">
-                                    <h3>{{ $employee->name }}</h3>
-                                    @foreach ($service_categories as $service_category)
-                                        @if ($service_category->id == $employee->user_service_category_id)
-                                            <h3>Service: {{ $service_category->name }}</h3>
-                                        @endif     
-                                    @endforeach
-                                
-                                    <hr class="separator">
+                    <div class="portfolioContainer" style="margin-top: -50px;">
+                        @foreach ($employees as $employee)
+                            @if (!empty($employee->per_hour_charge) && !empty($employee->user_service_category_id))
+                                <div class="col-xs-6 col-sm-4 col-md-3 hsgrids" style="padding-right: 5px;padding-left: 5px;">
+                                    <a class="g-list" href="{{ route('home.service.details', $employee->id) }}">
+                                    <div class="img-hover">
+                                        @if (!empty($employee->image))
+                                            <img src="{{ $employee->image }}" alt="{{ $employee->name }}" class="img-responsive" style="height: 200px; width:100%;">
+                                        @else
+                                            <img src="{{ asset('assets/frontend/img/thumbnail.jpg') }}" alt="{{ $employee->name }}" class="img-responsive" style="height: 200px; width:100%;">
+                                        @endif
+                                    
+                                    </div>
+                                    <div class="info-gallery">
+                                        <h3>{{ $employee->name }}</h3>
+                                        @foreach ($service_categories as $service_category)
+                                            @if ($service_category->id == $employee->user_service_category_id)
+                                                <h3>Service: {{ $service_category->name }}</h3>
+                                            @endif     
+                                        @endforeach
+                                    
+                                        <hr class="separator">
 
-                                        @auth
-                                            <div class="content-btn">
-                                                <a href="{{route('home.employee.hire', $employee->id) }}" class="btn btn-primary">Hire Now</a>
-                                            </div>
-                                        @endauth
-                                    
-                                        @guest
-                                            <p style="color: red;">Login to continue</p>
-                                        @endguest
-                                    
-                                    <div class="price">{{ $setting->currency->symbol }} {{ $employee->per_hour_charge }}</div>
+                                            @auth
+                                                <div class="content-btn">
+                                                    <a href="{{route('home.employee.hire', $employee->id) }}" class="btn btn-primary">Hire Now</a>
+                                                </div>
+                                            @endauth
+                                        
+                                            @guest
+                                                <p style="color: red;">Login to continue</p>
+                                            @endguest
+                                        
+                                        <div class="price">{{ $setting->currency->symbol }} {{ $employee->per_hour_charge }}</div>
+                                    </div>
+                                    </a>
                                 </div>
-                                </a>
-                            </div>
-                        @endif
-                    @endforeach
+                            @endif
+                        @endforeach
+                    </div>
                 </div>
-            </div>
+            @endif
         @endif
+        
      
         @if (count($appliance_services) > 0)
             <div>

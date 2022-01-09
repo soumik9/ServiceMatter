@@ -113,7 +113,7 @@
                                                 <label for="per_hour" class="col-md-4 col-form-label text-md-right">Transaction By</label>
                                                 <div class="col-md-8">
                                                     <select name="transaction_by" id="transaction_by" class="form-control">
-                                                        <option value="cod">Cash on Deliver</option>
+                                                        <option value="cod">Cash on Delivery</option>
                                                         <option value="bkash">Bkash</option>
                                                     </select>
                                                 </div>
